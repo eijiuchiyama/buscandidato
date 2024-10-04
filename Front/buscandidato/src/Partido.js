@@ -1,7 +1,7 @@
 import './Partido.css';
 import icone from './iconefoto.png';
 
-function Instituicao(){
+function Partido(){
     return(
     <html>
       <head>
