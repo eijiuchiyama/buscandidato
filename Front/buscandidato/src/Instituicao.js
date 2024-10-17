@@ -1,4 +1,5 @@
 import './Instituicao.css';
+import icone from './iconefoto.png';
 
 function Instituicao(){
     return(
