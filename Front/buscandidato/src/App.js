@@ -1,5 +1,6 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import './assets/Logo.png'
 import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
@@ -56,7 +57,7 @@ function App() {
           <div class="row text-end">
             <DropdownMenu optionsList={["Página Inicial", "Todos os Políticos", "Todos os Partidos", "Atualizações Recentes", "Sobre o site"]} > <MenuIcon/> </DropdownMenu>
           </div>
-          <div class="row"> <h1 class="text-center">Buscandidato</h1> </div>
+          <div class="row"> <h1 class="text-center"></h1> </div>
           <div class="row m-5">
             <ContentBox header="Digite o nome de seu candidato ou partido">
               <SearchBarContent />
