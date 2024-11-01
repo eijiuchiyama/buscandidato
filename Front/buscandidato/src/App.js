@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import './assets/Logo.png'
+import logo from './assets/Logo.png'
 import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
@@ -51,12 +51,21 @@ function App() {
       <head>
       <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
       </head>
       <body>
-        <div class="container">
-          <div class="row text-end">
-            <DropdownMenu optionsList={["Página Inicial", "Todos os Políticos", "Todos os Partidos", "Atualizações Recentes", "Sobre o site"]} > <MenuIcon/> </DropdownMenu>
+        <div class="container p-3">
+          <div class="row align-items-center">
+            <div class="col"></div>
+            <div class="col-auto text-center ">
+              <img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img>
+            </div>
+            <div class="col text-end">
+              <DropdownMenu optionsList={["Página Inicial", "Todos os Políticos", "Todos os Partidos", "Atualizações Recentes", "Sobre o site"]} > <MenuIcon/> </DropdownMenu>
+            </div>
           </div>
+        </div>
+        <div class="container bg-secondary rounded p-3">
           <div class="row"> <h1 class="text-center"></h1> </div>
           <div class="row m-5">
             <ContentBox header="Digite o nome de seu candidato ou partido">
