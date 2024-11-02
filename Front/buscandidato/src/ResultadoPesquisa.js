@@ -1,8 +1,7 @@
-import './Partido.css';
 import {Header} from './App.js'
 import icone from './iconefoto.png';
 
-function Partido(){
+function Candidato(){
     return(
     <html>
       <head>
@@ -30,7 +29,7 @@ function Partido(){
         </div>
       </body>
     </html>
-  );
+    );
 }
 
-export default Partido;
+export default Candidato;

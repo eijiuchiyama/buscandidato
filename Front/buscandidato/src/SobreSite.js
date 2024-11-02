@@ -1,8 +1,7 @@
-import './Partido.css';
 import {Header} from './App.js'
 import icone from './iconefoto.png';
 
-function Partido(){
+function SobreSite(){
     return(
     <html>
       <head>
@@ -13,24 +12,24 @@ function Partido(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h2>Partido Sem Nome</h2>
+                <h2>Sobre o site</h2>
             </div>
-            <div class="p-4">
-              <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
-            </div>
-            <div class="card-body">
-                <h3>Sigla do partido:</h3>
-                <h3>Ano de criação:</h3>
-                <h3>Presidente do partido:</h3>
-                <h3>Número de deputados federais:</h3>
-                <h3>Número de deputados senadores:</h3>
-                <h3>Número de vereadores na Câmara Municipal de São Paulo:</h3>
-                
+            <div class="card-body text-center">
+                <h3>Este site foi criado por:</h3>
+                <div class="m-5">
+                    <h3>Fernando Yang</h3>
+                    <h3>João Mantovani</h3>
+                    <h3>Lucas dos Anjos</h3>
+                    <h3>Lucas Eiji Uchiyama</h3>
+                    <h3>Marcelo Spessoto</h3>
+                    <h3>Thiago Sikusawa</h3>
+                </div>
+                <h3>Licenciado sob GNU LESSER GENERAL PUBLIC LICENSE 3.0</h3>
             </div>
         </div>
       </body>
     </html>
-  );
+    );
 }
 
-export default Partido;
+export default SobreSite;

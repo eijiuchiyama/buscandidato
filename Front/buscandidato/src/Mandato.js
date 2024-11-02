@@ -1,8 +1,7 @@
-import './Partido.css';
 import {Header} from './App.js'
 import icone from './iconefoto.png';
 
-function Partido(){
+function Candidato(){
     return(
     <html>
       <head>
@@ -25,12 +24,11 @@ function Partido(){
                 <h3>Número de deputados federais:</h3>
                 <h3>Número de deputados senadores:</h3>
                 <h3>Número de vereadores na Câmara Municipal de São Paulo:</h3>
-                
             </div>
         </div>
       </body>
     </html>
-  );
+    );
 }
 
-export default Partido;
+export default Candidato;

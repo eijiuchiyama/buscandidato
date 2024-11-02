@@ -1,5 +1,6 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from './assets/Logo.png'
 import camaraDeputadosIcon from './assets/CamaraDeputados.png'
 import senadoIcon from './assets/Senado.png'
@@ -8,6 +9,8 @@ import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import SobreSite from './SobreSite';
+
 
 const MenuIcon = () => {
   return (<><i class="bi bi-justify" style={{ fontSize: 20 }}></i></>);
@@ -63,7 +66,7 @@ function SecondSectionButtons(){
   );
 }
 
-function Header(){
+export function Header(){
   return (
     <div class="container m-4">
       <div class="row align-items-center">
