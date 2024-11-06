@@ -9,7 +9,7 @@ import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import SobreSite from './SobreSite';
+import { Link } from "react-router-dom";
 
 
 const MenuIcon = () => {
@@ -72,7 +72,7 @@ export function Header(){
       <div class="row align-items-center">
         <div class="col"></div>
         <div class="col-auto text-center ">
-          <img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img>
+          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
         <div class="col text-end m-5">
           <DropdownMenu optionsList={["Página Inicial", "Todos os Políticos", "Todos os Partidos", "Atualizações Recentes", "Sobre o site"]} > <MenuIcon/> </DropdownMenu>

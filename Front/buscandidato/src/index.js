@@ -1,26 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import Instituicao from './Instituicao';
-import Partido from './Partido';
-import Candidato from './Candidato';
-import ResultadoPesquisa from './ResultadoPesquisa';
-import Mandato from './Mandato';
-import TodosPartidos from './TodosPartidos';
-import TodosPoliticos from './TodosPoliticos';
-import SobreSite from './SobreSite';
-import Frente from './Frente';
-import Proposicao from './Proposicao';
-import Orgao from './Orgao';
-import Votacao from './Votacao';
-import VotacoesProposicao from './VotacoesProposicao';
+import Main from './Main';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <VotacoesProposicao />
+    <Main />
   </React.StrictMode>
 );
 
