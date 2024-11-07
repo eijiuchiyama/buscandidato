@@ -11,17 +11,17 @@ function Votacao(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
-            <div class="text-center">
-                <h2>Câmara dos Deputados</h2>
-                <h1>Votacao 1</h1>
-                <h2>Proposicao afetada: </h2>
+            <div class="text-center mb-5">
+                <h3>Câmara dos Deputados</h3>
+                <h1>Votação 1</h1>
+                <h3>Proposição afetada: </h3>
             </div>
             <div>
-                <h2>Data:</h2>
-                <h2>Órgão:</h2>
-                <h2>Resultado:</h2>
-                <h2>Sim:</h2>
-                <h2>Não:</h2>
+                <h3>Data:</h3>
+                <h3>Órgão:</h3>
+                <h3>Resultado:</h3>
+                <h3>Sim:</h3>
+                <h3>Não:</h3>
             </div>
         </div>
       </body>

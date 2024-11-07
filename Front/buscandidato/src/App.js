@@ -96,7 +96,7 @@ function App() {
         <div class="container rounded p-3">
           <div class="row"> <h1 class="text-center"></h1> </div>
           <div class="row m-5">
-            <ContentBox header="Digite o nome de seu candidato ou partido">
+            <ContentBox header="Digite o nome de um candidato ou partido">
               <SearchBarContent />
             </ContentBox>
           </div>

@@ -1,4 +1,3 @@
-import './Partido.css';
 import {Header} from './App.js'
 import icone from './iconefoto.png';
 
@@ -13,7 +12,7 @@ function Partido(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h2>Partido Sem Nome</h2>
+                <h1>Partido Sem Nome</h1>
             </div>
             <div class="p-4">
               <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>

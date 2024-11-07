@@ -11,14 +11,14 @@ function Orgao(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
-            <div class="text-center">
-                <h2>Câmara dos Deputados</h2>
-                <h1>Orgao 1</h1>
+            <div class="text-center mb-5">
+                <h3>Câmara dos Deputados</h3>
+                <h1>Órgão 1</h1>
             </div>
             <div>
-                <h2>Sigla:</h2>
-                <h2>Apelido:</h2>
-                <h2>Sala:</h2>
+                <h3>Sigla:</h3>
+                <h3>Apelido:</h3>
+                <h3>Sala:</h3>
             </div>
         </div>
       </body>

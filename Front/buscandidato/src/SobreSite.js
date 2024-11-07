@@ -11,8 +11,8 @@ function SobreSite(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="card p-3">
-            <div class="card-header text-center rounded">
-                <h2>Sobre o site</h2>
+            <div class="card-header text-center rounded mb-5">
+                <h1>Sobre o site</h1>
             </div>
             <div class="card-body text-center">
                 <h3>Este site foi criado por:</h3>

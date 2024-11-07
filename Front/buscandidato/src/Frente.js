@@ -11,14 +11,14 @@ function Frente(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
-            <div class="text-center">
-                <h2>Câmara dos Deputados</h2>
+            <div class="text-center mb-5">
+                <h3>Câmara dos Deputados</h3>
                 <h1>Frente 1</h1>
             </div>
             <div>
-                <h2>Coordenador:</h2>
-                <h2>E-mail:</h2>
-                <h2>Telefone:</h2>
+                <h3>Coordenador:</h3>
+                <h3>E-mail:</h3>
+                <h3>Telefone:</h3>
             </div>
         </div>
       </body>

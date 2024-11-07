@@ -11,15 +11,15 @@ function Proposicao(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
-            <div class="text-center">
-                <h2>Câmara dos Deputados</h2>
+            <div class="text-center mb-5">
+                <h3>Câmara dos Deputados</h3>
                 <h1>Proposição 1</h1>
             </div>
             <div>
-                <h2>Ano:</h2>
-                <h2>Autores:</h2>
-                <h2>Ementa:</h2>
-                <h2>Temas:</h2>
+                <h3>Ano:</h3>
+                <h3>Autores:</h3>
+                <h3>Ementa:</h3>
+                <h3>Temas:</h3>
             </div>
         </div>
       </body>
