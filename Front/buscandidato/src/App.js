@@ -44,19 +44,19 @@ function SecondSectionButtons(){
       <div class="container">
         <div class="row justify-content-center">
           <div class="col text-center"> 
-          <Link to='/instituicao'><Button>Câmara SP</Button></Link>
+          <Link to='/municipal'><Button>Câmara SP</Button></Link>
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#55ff55'}}>
               <img src={camaraMunicipalIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col text-center"> 
-          <Link to='/instituicao'><Button>Câmara dos Deputados</Button></Link> 
+          <Link to='/deputados'><Button>Câmara dos Deputados</Button></Link> 
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#5555ff'}}>
               <img src={camaraDeputadosIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col text-center"> 
-            <Link to='/instituicao'><Button>Senado</Button></Link>
+            <Link to='/senado'><Button>Senado</Button></Link>
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#ff5555'}}>
               <img src={senadoIcon} class="img-fluid"></img>
             </div>
@@ -70,12 +70,12 @@ function SecondSectionButtons(){
 export function Header(){
   return (
     <div class="container m-4">
-      <div class="row align-items-center">
-        <div class="col"></div>
-        <div class="col-auto text-center ">
+      <div class="d-flex align-items-center justify-content-between">
+        <div class="d-flex flex-grow-1"></div>
+        <div class="text-center">
           <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
-        <div class="col text-end m-5">
+        <div class="d-flex flex-grow-1 justify-content-end m-5">
           <DropdownMenu optionsList={[
             <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
             <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
