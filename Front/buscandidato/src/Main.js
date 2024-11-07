@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Candidato from "./Candidato";
 import Partido from "./Partido";
-import Instituicao from "./Instituicao";
+import Municipal from "./CamaraMunicipal";
+import Deputados from "./CamaraDeputados";
+import Senado from "./Senado";
 import Frente from './Frente';
 import Orgao from './Orgao';
 import Proposicao from './Proposicao';
@@ -21,7 +23,9 @@ function Main() {
         <Route path="/candidato" element={<Candidato />} />
         <Route path="/candidato/mandato" element={<Mandato />} />
         <Route path="/partido" element={<Partido />} />
-        <Route path="/instituicao" element={<Instituicao />} />
+        <Route path="/senado" element={<Senado />} />
+        <Route path="/deputados" element={<Deputados />} />
+        <Route path="/municipal" element={<Municipal />} />
         <Route path="/instituicao/frente" element={<Frente />} />
         <Route path="/instituicao/orgao" element={<Orgao />} />
         <Route path="/instituicao/proposicao" element={<Proposicao />} />

@@ -5,7 +5,7 @@ import SenadoPicture from './assets/SenadoPicture.jpeg';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 
-function Instituicao(){
+function CamaraDeputados(){
     return(
     <html>
       <head>
@@ -16,10 +16,10 @@ function Instituicao(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded" style={{backgroundColor: '#ff5555'}}>
-                <h1>Senado</h1>
+                <h1>Câmara dos Deputados</h1>
             </div>
             <div class="p-4">
-              <img src={SenadoPicture} class="mx-auto d-block rounded" style={{width:'40vw'}}/>
+              <img src={CamaraDeputadosPicture} class="mx-auto d-block rounded" style={{width:'40vw'}}/>
             </div>
             <div class="card-body">
                 <h3>Cidade:</h3>
@@ -36,4 +36,4 @@ function Instituicao(){
   );
 }
 
-export default Instituicao;
+export default CamaraDeputados;

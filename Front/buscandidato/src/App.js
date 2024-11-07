@@ -44,19 +44,19 @@ function SecondSectionButtons(){
       <div class="container">
         <div class="row justify-content-center">
           <div class="col text-center"> 
-            <Button>Câmara SP</Button> 
+          <Link to='/instituicao'><Button>Câmara SP</Button></Link>
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#55ff55'}}>
               <img src={camaraMunicipalIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col text-center"> 
-            <Button>Câmara dos Deputados</Button> 
+          <Link to='/instituicao'><Button>Câmara dos Deputados</Button></Link> 
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#5555ff'}}>
               <img src={camaraDeputadosIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col text-center"> 
-            <Button>Senado</Button> 
+            <Link to='/instituicao'><Button>Senado</Button></Link>
             <div class="container p-3 m-3 rounded" style={{backgroundColor: '#ff5555'}}>
               <img src={senadoIcon} class="img-fluid"></img>
             </div>
