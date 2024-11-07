@@ -15,3 +15,16 @@ from .models import Integrante_Orgao
 from .models import Integrante_Frente
 
 admin.site.register(Politico)
+admin.site.register(Partido)
+admin.site.register(Orgao)
+admin.site.register(Votacao)
+admin.site.register(Frente)
+admin.site.register(Proposicao)
+admin.site.register(Despesa)
+admin.site.register(Mandato)
+admin.site.register(Integrante_Partido)
+admin.site.register(Votacao_Politico)
+admin.site.register(Votacao_Proposicao)
+admin.site.register(Autor_Proposicao)
+admin.site.register(Integrante_Orgao)
+admin.site.register(Integrante_Frente)
