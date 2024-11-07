@@ -9,6 +9,7 @@ import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import SobreSite from './SobreSite';
 import { Link } from "react-router-dom";
 
 
@@ -75,7 +76,12 @@ export function Header(){
           <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
         <div class="col text-end m-5">
-          <DropdownMenu optionsList={["Página Inicial", "Todos os Políticos", "Todos os Partidos", "Atualizações Recentes", "Sobre o site"]} > <MenuIcon/> </DropdownMenu>
+          <DropdownMenu optionsList={[
+            <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
+            <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
+            <Link to='/partidos' style={{color: "#000000", textDecoration: "none"}}>Todos os Partidos</Link>, 
+            <Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none"}}>Atualizações Recentes</Link>, 
+            <Link to='/sobre' style={{color: "#000000", textDecoration: "none"}}>Sobre o site</Link>]}> <MenuIcon/> </DropdownMenu>
         </div>
       </div>
     </div>
