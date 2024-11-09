@@ -2,16 +2,16 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 function DropdownMenu({children, optionsList}) {
   return (
-    <>
-      <Dropdown>
-        <Dropdown.Toggle variant="success">
+    <div class="max-w-xs">
+      <Dropdown class="max-w-xs">
+        <Dropdown.Toggle variant="success" size="sm" style={{ width: "100%", height: "100%" }}>
           {children}
         </Dropdown.Toggle>
         <DropdownItems 
           optionsList={optionsList}
         />
       </Dropdown>
-    </>
+    </div>
   );
 }
 

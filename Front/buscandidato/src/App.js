@@ -40,15 +40,13 @@ function SearchBarContent(){
       </div>}
       {isMobile &&
       <div class="container">
-        <div class="text-center">
-          <div class="mb-3">
-            <DropdownMenu optionsList={["Candidato", "Partido", "Casa Legislativa"]} >
-              <h7>Tags</h7>
+        <div class="row">
+          <div class="col">
+            <DropdownMenu optionsList={["Candidato", "Partido", "Casa Legislativa"]}>
             </DropdownMenu>
           </div>
-          <div>
+          <div class="col-8">
             <Form.Control
-                placeholder="Procure por um candidato ou político"
               />
           </div>
         </div>
@@ -135,20 +133,20 @@ export function Header(){
         </div>
       </div>}
       {isMobile && 
-      <div class="container-flex">
-      <div class="text-center">
-        <div class="m-2">
-          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
+      <div class="container">
+        <div class="row">
+          <div class="col-8 m-2">
+            <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
+          </div>
+          <div class="col">
+            <DropdownMenu optionsList={[
+              <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
+              <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
+              <Link to='/partidos' style={{color: "#000000", textDecoration: "none"}}>Todos os Partidos</Link>, 
+              <Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none"}}>Atualizações Recentes</Link>, 
+              <Link to='/sobre' style={{color: "#000000", textDecoration: "none"}}>Sobre o site</Link>]}> <MenuIcon/> </DropdownMenu>
+          </div>
         </div>
-        <div class="m-5">
-          <DropdownMenu optionsList={[
-            <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
-            <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
-            <Link to='/partidos' style={{color: "#000000", textDecoration: "none"}}>Todos os Partidos</Link>, 
-            <Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none"}}>Atualizações Recentes</Link>, 
-            <Link to='/sobre' style={{color: "#000000", textDecoration: "none"}}>Sobre o site</Link>]}> <MenuIcon/> </DropdownMenu>
-        </div>
-      </div>
     </div>}
     </>
   );
