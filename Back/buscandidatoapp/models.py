@@ -12,6 +12,7 @@ class Politico(models.Model):
     
     CPF = models.CharField(validators=[cpf_regex], max_length=11, primary_key=True)
     Nome = models.CharField(max_length=255, blank=True, null=True)
+    Nome_Civil = models.CharField(max_length=255, blank=True, null=True)
     Partido_Atual = models.CharField(max_length=31, blank=True, null=True)
     Estado = models.CharField(max_length=15, blank=True, null=True)
     Estado_Nascimento = models.CharField(max_length=15, blank=True, null=True)
@@ -19,7 +20,6 @@ class Politico(models.Model):
     Data_Nascimento = models.DateField(blank=True, null=True)
     Sexo = models.CharField(max_length=15, choices=SEXOS, blank=True, null=True)
     Escolaridade = models.CharField(max_length=255, blank=True, null=True)
-    Profissao = models.CharField(max_length=255, blank=True, null=True)
     Telefone = models.CharField(validators=[telefone_regex], max_length=9, blank=True, null=True)
     Email = models.EmailField(blank=True, null=True)
     ID_Camara_Politico = models.IntegerField(blank=True, null=True)
@@ -27,11 +27,11 @@ class Politico(models.Model):
 
 class Partido(models.Model):
     Sigla_Partido = models.CharField(max_length=31, primary_key=True)
-    Lider_Partido_CPF = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Nome = models.CharField(max_length=255, blank=True, null=True)
-    Numero_Eleitoral = models.IntegerField(blank=True, null=True)
+    Lider_Partido_CPF = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Qty_Membros_Camara = models.IntegerField(blank=True, null=True)
     ID_Camara_Partido = models.IntegerField(blank=True, null=True)
+    Situacao = models.CharField(max_length=255, blank=True, null=True)
 
 class Orgao(models.Model):
     Sigla_Orgao = models.CharField(max_length=31, primary_key=True)
@@ -51,8 +51,8 @@ class Votacao(models.Model):
 
 class Frente(models.Model):
     ID_Camara_Frente = models.IntegerField(primary_key=True)
-    CPF_Coordenador = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Nome = models.CharField(max_length=255, blank=True, null=True)
+    CPF_Coordenador = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     PDF_Frente = models.FileField(blank=True, null=True)
 
 class Proposicao(models.Model):
@@ -77,19 +77,27 @@ class Despesa(models.Model):
     CNPJ_Fornecedor = models.CharField(max_length=255, blank=True, null=True)
 
 # ========================================= Relacoes =========================================
+class Profissao(models.Model):
+    Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
+    Titulo = models.CharField(max_length=255, blank=True, null=True)
+    Data = models.DateField(blank=True, null=True)
+
 class Mandato(models.Model):
     Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
-    Sigla_Partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
-    Periodo = models.CharField(max_length=255, blank=True, null=True)
+    Legislatura = models.CharField(max_length=255, blank=True, null=True)
+    Inicio_Mandato = models.DateField(blank=True, null=True)
+    Fim_Mandato = models.DateField(blank=True, null=True)
+    Estado = models.CharField(max_length=15, blank=True, null=True)
 
 class Integrante_Partido(models.Model):
     Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
     Sigla_Partido = models.ForeignKey(Partido, on_delete=models.CASCADE)
-    Periodo = models.CharField(max_length=255, blank=True, null=True)
+    Data_Inicio = models.DateField(blank=True, null=True)
+    Data_Fim = models.DateField(blank=True, null=True)
 
-class Votacao_Politico(models.Model):
-    Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
+class Voto_Politico(models.Model):
     ID_Camara_Votacao = models.ForeignKey(Votacao, on_delete=models.CASCADE)
+    Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
     Voto = models.CharField(max_length=255, blank=True, null=True)
 
 class Votacao_Proposicao(models.Model):
