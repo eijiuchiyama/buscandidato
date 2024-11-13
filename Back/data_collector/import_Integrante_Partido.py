@@ -1,11 +1,17 @@
 import requests
 import django
 import json
+import sys
 import os
 
+# Access the directory above the script
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+# Initialize the Django environment
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "buscandidato.settings")
 django.setup()
 
+# Access the Database
 import buscandidatoapp.models as models
 
 with open("partidos.json", "r") as file:
