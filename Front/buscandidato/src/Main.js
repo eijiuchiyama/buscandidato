@@ -14,6 +14,7 @@ import Mandato from './Mandato';
 import ResultadoPesquisa from './ResultadoPesquisa';
 import Atualizacoes from './Atualizacoes';
 import SobreSite from './SobreSite';
+import ListaPartidos from './ListaPartidos';
 import VotacoesProposicao from './VotacoesProposicao';
 
 function Main() {
@@ -27,6 +28,11 @@ function Main() {
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
+        <Route path="/instituicao/lista-frentes" element={<Frente />} />
+        <Route path="/instituicao/lista-orgaos" element={<Orgao />} />
+        <Route path="/instituicao/lista-proposicoes" element={<Proposicao />} />
+        <Route path="/instituicao/lista-votacoes" element={<Votacao />} />
+        <Route path="/instituicao/lista-membros" element={<Votacao />} />
         <Route path="/instituicao/frente" element={<Frente />} />
         <Route path="/instituicao/orgao" element={<Orgao />} />
         <Route path="/instituicao/proposicao" element={<Proposicao />} />
@@ -34,6 +40,8 @@ function Main() {
         <Route path="/resultados" element={<ResultadoPesquisa />} />
         <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
+        <Route path="/lista-partidos" element={<ListaPartidos/>} />
+        <Route path="/lista-politicos" element={<ListaPoliticos/>} />
         <Route path="/instituicao/proposicao/resultados" element={<VotacoesProposicao />} />
       </Routes>
     </Router>

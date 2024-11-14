@@ -28,7 +28,7 @@ function SearchBarContent(){
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      navigate('/sobre'); // Redireciona para a página "/sobre"
+      navigate('/resultados');
     }
   };
 
