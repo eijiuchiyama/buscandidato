@@ -1,12 +1,6 @@
 import os
 import sys
 import django
-import requests
-
-# Header to mimic a browser request
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-}
 
 # Access the directory two above the script
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
@@ -21,7 +15,17 @@ import buscandidatoapp.models as models
 def ID_exists(value):
     return models.Politico.objects.filter(ID_Camara_Politico = value).exists()
 
+def get_Deputado_by_ID(value):
+    return models.Politico.objects.filter(ID_Camara_Politico = value)[0]
+
+def get_Deputado_by_CPF(value):
+    return models.Politico.objects.filter(CPF = value)[0]
+
 def import_Deputado(data):
+    if ID_exists(data["id"]):
+        print(data["nomeCivil"] + "(" + data["cpf"] + ") already included.")
+        return
+
     politico = models.Politico(
         CPF = data["cpf"],
         Nome = data["ultimoStatus"]["nome"],
@@ -35,8 +39,8 @@ def import_Deputado(data):
         Escolaridade = data["escolaridade"],
         Telefone = data["ultimoStatus"]["gabinete"]["telefone"],
         Email = data["ultimoStatus"]["gabinete"]["email"],
-        ID_Câmara_Político = data["id"],
-        #Foto = data["ultimoStatus"]["urlFoto"],
+        ID_Camara_Politico = data["id"],
+        Foto = data["ultimoStatus"]["urlFoto"],
     )
     politico.save()
-    print(politico.CPF + " information included.")
+    print(politico.Nome_Civil + "(" + politico.CPF + ") included.")

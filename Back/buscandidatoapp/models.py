@@ -23,7 +23,7 @@ class Politico(models.Model):
     Telefone = models.CharField(validators=[telefone_regex], max_length=9, blank=True, null=True)
     Email = models.EmailField(blank=True, null=True)
     ID_Camara_Politico = models.IntegerField(blank=True, null=True)
-    Foto = models.ImageField(blank=True, null=True)
+    Foto = models.URLField(max_length=255, blank=True, null=True)
 
 class Partido(models.Model):
     Sigla_Partido = models.CharField(max_length=31, primary_key=True)
