@@ -1,6 +1,6 @@
 import requests
 
-import data_import.Deputados_Importer as importer
+import data_import.Deputados_Importer as DeputadoImporter
 
 # Function to get URL of next page of API
 def nextPage(Links):
@@ -11,16 +11,20 @@ def nextPage(Links):
     return None
 
 # Make requests to API
-URL = "https://dadosabertos.camara.leg.br/api/v2/deputados?dataInicio=2000-01-01&dataFim=2024-11-13&ordem=ASC&ordenarPor=nome"
+URL_DATA = "https://dadosabertos.camara.leg.br/api/v2/deputados/<id>"
+URL_PROFESSION = "https://dadosabertos.camara.leg.br/api/v2/deputados/<id>/profissoes"
+URL_HISTORY = "https://dadosabertos.camara.leg.br/api/v2/deputados/<id>/historico"
+url = "https://dadosabertos.camara.leg.br/api/v2/deputados?dataInicio=2000-01-01&dataFim=2024-11-13&ordem=ASC&ordenarPor=nome"
 
-while URL!= None:
-    JSON = requests.get(URL).json()
-    DATAS = JSON["dados"]
+while url!= None:
+    page = requests.get(url).json()
+    datas = page["dados"]
 
-    for entry in DATAS:
-        ID = entry["id"]
-        if not importer.ID_exists(ID):
-            Deputado_data = entry["uri"].json()["dados"]
-            importer.import_Deputado(Deputado_data)
+    for entry in datas:
+        id = entry["id"]
+        if not DeputadoImporter.ID_exists(id):
+            link_data = URL_DATA.replace("<id>", str(id))
+            Deputado_data = requests.get(link_data).json()["dados"]
+            DeputadoImporter.import_Deputado(Deputado_data)
 
-    URL = nextPage(JSON["links"])
+    url = nextPage(page["links"])
