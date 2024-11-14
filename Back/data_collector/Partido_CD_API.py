@@ -24,7 +24,9 @@ def is_json(text):
 def get_json(url):
     while(True):
         response = requests.get(url)
-        if response.status_code == 200 and is_json(response.text):
+        if response.status_code == 404:
+            return False
+        elif response.status_code == 200 and is_json(response.text):
             json_data = response.json()
             return json_data
         else:
@@ -43,8 +45,9 @@ while url!= None:
         id = entry["id"]
 
         link_partido_data = URL_DATA.replace("<id>", str(id))
-        Partido_data = get_json(link_partido_data)["dados"]
-        PartidoImporter.import_Partido(Partido_data)
+        Partido_data = get_json(link_partido_data)
+        if Partido_data:
+            PartidoImporter.import_Partido(Partido_data["dados"])
 
     url = nextPage(page["links"])
 

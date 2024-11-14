@@ -24,7 +24,7 @@ def get_Partido_by_SIGLA(value):
 # Function to get Deputado by searching for IS get from last space of uri
 def get_Deputados(uri):
     politico = None
-    if uri != None:
+    if uri != None and uri != "":
         id = uri.split("/")[-1]
         politico = models.Politico.objects.filter(ID_Camara_Politico = id)[0]
     return politico
@@ -36,7 +36,7 @@ def import_Partido(data):
 
     partido = models.Partido(
         Sigla_Partido = data["sigla"],
-        Nome = data["Nome"],
+        Nome = data["nome"],
         Lider_Partido_CPF = get_Deputados(data["status"]["lider"]["uri"]),
         Qty_Membros_Camara = data["status"]["totalPosse"],
         ID_Camara_Partido = data["id"],

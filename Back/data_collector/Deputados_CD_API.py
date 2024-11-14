@@ -25,7 +25,9 @@ def is_json(text):
 def get_json(url):
     while(True):
         response = requests.get(url)
-        if response.status_code == 200 and is_json(response.text):
+        if response.status_code == 404:
+            return False
+        elif response.status_code == 200 and is_json(response.text):
             json_data = response.json()
             return json_data
         else:
@@ -50,8 +52,9 @@ while url!= None:
         
         Politico = DeputadoImporter.get_Deputado_by_ID(id)
         link_profession_data = URL_PROFESSION.replace("<id>", str(id))
-        Profession_data = get_json(link_profession_data)["dados"]
-        for profession_entry in Profession_data:
-            ProfissaoImporter.import_Profissao(Politico, profession_entry)
+        Profession_data = get_json(link_profession_data)
+        if Profession_data:
+            for profession_entry in Profession_data["dados"]:
+                ProfissaoImporter.import_Profissao(Politico, profession_entry)
 
     url = nextPage(page["links"])

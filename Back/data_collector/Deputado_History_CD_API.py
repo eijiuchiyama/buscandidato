@@ -24,7 +24,9 @@ def is_json(text):
 def get_json(url):
     while(True):
         response = requests.get(url)
-        if response.status_code == 200 and is_json(response.text):
+        if response.status_code == 404:
+            return False
+        elif response.status_code == 200 and is_json(response.text):
             json_data = response.json()
             return json_data
         else:
@@ -44,7 +46,8 @@ while url!= None:
 
         Politico = DeputadoImporter.get_Deputado_by_ID(id)
         link_history_data = URL_HISTORY.replace("<id>", str(id))
-        History_data = get_json(link_history_data)["dados"]
-        Deputado_History_Importer.import_History(Politico, History_data)
+        History_data = get_json(link_history_data)
+        if History_data:
+            Deputado_History_Importer.import_History(Politico, History_data["dados"])
 
     url = nextPage(page["links"])
