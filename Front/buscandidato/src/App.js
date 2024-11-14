@@ -26,12 +26,12 @@ function SearchBarContent(){
       {isDesktop &&
       <div class="container">
         <div class="row">
-          <div class="col-1 mb-2">
-            <DropdownMenu optionsList={["Candidato", "Partido", "Casa Legislativa"]} >
+          <div class="col-2" style={{minWidth: '80px', maxWidth:'80px'}}>
+            <DropdownMenu optionsList={["Candidato", "Partido"]} >
               <h7>Tags</h7>
             </DropdownMenu>
           </div>
-          <div class="col-11">
+          <div class="col-10">
              <Form.Control
                 placeholder="Procure por um candidato ou político"
               />
@@ -41,12 +41,14 @@ function SearchBarContent(){
       {isMobile &&
       <div class="container">
         <div class="row">
-          <div class="col">
-            <DropdownMenu optionsList={["Candidato", "Partido", "Casa Legislativa"]}>
+          <div class="col-4" style={{minWidth: '80px', maxWidth:'80px'}}>
+            <DropdownMenu optionsList={["Candidato", "Partido"]}>
+              <h7>Tags</h7>
             </DropdownMenu>
           </div>
           <div class="col-8">
             <Form.Control
+              placeholder="Procure por um candidato ou político"
               />
           </div>
         </div>
@@ -134,11 +136,11 @@ export function Header(){
       </div>}
       {isMobile && 
       <div class="container">
-        <div class="row">
-          <div class="col-8 m-2">
+        <div class="row mt-4 mb-4">
+          <div class="col-9 m-2">
             <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
           </div>
-          <div class="col">
+          <div class="col" style={{minWidth: '80px', maxWidth:'80px'}}>
             <DropdownMenu optionsList={[
               <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
               <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 

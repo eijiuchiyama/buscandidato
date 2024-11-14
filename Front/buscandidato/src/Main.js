@@ -12,6 +12,7 @@ import Proposicao from './Proposicao';
 import Votacao from './Votacao';
 import Mandato from './Mandato';
 import ResultadoPesquisa from './ResultadoPesquisa';
+import Atualizacoes from './Atualizacoes';
 import SobreSite from './SobreSite';
 import VotacoesProposicao from './VotacoesProposicao';
 
@@ -31,6 +32,7 @@ function Main() {
         <Route path="/instituicao/proposicao" element={<Proposicao />} />
         <Route path="/instituicao/votacao" element={<Votacao />} />
         <Route path="/resultados" element={<ResultadoPesquisa />} />
+        <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
         <Route path="/instituicao/proposicao/resultados" element={<VotacoesProposicao />} />
       </Routes>
