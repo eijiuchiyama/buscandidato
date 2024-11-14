@@ -1,6 +1,5 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import logo from './assets/Logo.png'
 import camaraDeputadosIcon from './assets/CamaraDeputados.png'
 import senadoIcon from './assets/Senado.png'
@@ -9,9 +8,9 @@ import DropdownMenu from './components/DropdownMenu.js';
 import ContentBox from './components/ContentBox.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import SobreSite from './SobreSite';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
+import { useState } from 'react';
 
 
 const MenuIcon = () => {
@@ -21,18 +20,44 @@ const MenuIcon = () => {
 function SearchBarContent(){
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isDesktop = useMediaQuery({ minWidth: 768 });
+  var tag=0;
+  const [tagText, setTagText] = useState("Tags");
+
+  const navigate = useNavigate();
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      navigate('/sobre'); // Redireciona para a página "/sobre"
+    }
+  };
+
+  const clickCandidato = (event) => {
+    tag=1;
+    console.log(tag);
+    setTagText("Candidato");
+  };
+
+  const clickPartido = (event) => {
+    tag=2;
+    console.log(tag);
+    setTagText("Partido");
+  };
+
   return (
     <>
       {isDesktop &&
       <div class="container">
         <div class="row">
-          <div class="col-2" style={{minWidth: '80px', maxWidth:'80px'}}>
-            <DropdownMenu optionsList={["Candidato", "Partido"]} >
-              <h7>Tags</h7>
+          <div class="col-3" style={{minWidth: '120px', maxWidth:'120px'}}>
+            <DropdownMenu optionsList={[
+              <div onClick={clickCandidato}>Candidato</div>, 
+              <div onClick={clickPartido}>Partido</div>]} >
+              <h7>{tagText}</h7>
             </DropdownMenu>
           </div>
-          <div class="col-10">
-             <Form.Control
+          <div class="col-9">
+             <Form.Control onKeyDown={handleKeyDown}
                 placeholder="Procure por um candidato ou político"
               />
           </div>
@@ -41,13 +66,15 @@ function SearchBarContent(){
       {isMobile &&
       <div class="container">
         <div class="row">
-          <div class="col-4" style={{minWidth: '80px', maxWidth:'80px'}}>
-            <DropdownMenu optionsList={["Candidato", "Partido"]}>
-              <h7>Tags</h7>
+          <div class="col-6" style={{minWidth: '120px', maxWidth:'120px'}}>
+            <DropdownMenu optionsList={[
+              <div onClick={clickCandidato}>Candidato</div>, 
+              <div onClick={clickPartido}>Partido</div>]}>
+              <h7>{tagText}</h7>
             </DropdownMenu>
           </div>
-          <div class="col-8">
-            <Form.Control
+          <div class="col-6">
+            <Form.Control onKeyDown={handleKeyDown}
               placeholder="Procure por um candidato ou político"
               />
           </div>
@@ -67,19 +94,19 @@ function SecondSectionButtons(){
         <div class="row">
           <div class="col p-3 text-center"> 
           <Link to='/municipal'><Button>Câmara SP</Button></Link>
-            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#55ff55'}}>
+            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#55ff55', maxWidth: "250px"}}>
               <img src={camaraMunicipalIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col p-3 text-center"> 
           <Link to='/deputados'><Button>Câmara dos Deputados</Button></Link> 
-            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#5555ff'}}>
+            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#5555ff', maxWidth: "250px"}}>
               <img src={camaraDeputadosIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="col p-3 text-center"> 
             <Link to='/senado'><Button>Senado</Button></Link>
-            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#ff5555'}}>
+            <div class="container p-3 mt-3 rounded" style={{backgroundColor: '#ff5555', maxWidth: "250px"}}>
               <img src={senadoIcon} class="img-fluid"></img>
             </div>
           </div>
@@ -90,19 +117,19 @@ function SecondSectionButtons(){
         <div class="justify-content-center">
           <div class="text-center"> 
           <Link to='/municipal'><Button>Câmara SP</Button></Link>
-            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#55ff55'}}>
+            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#55ff55', maxWidth: "150px"}}>
               <img src={camaraMunicipalIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="text-center"> 
           <Link to='/deputados'><Button>Câmara dos Deputados</Button></Link> 
-            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#5555ff'}}>
+            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#5555ff', maxWidth: "150px"}}>
               <img src={camaraDeputadosIcon} class="img-fluid"></img>
             </div>
           </div>
           <div class="text-center"> 
             <Link to='/senado'><Button>Senado</Button></Link>
-            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#ff5555'}}>
+            <div class="container p-3 mb-5 mt-3 rounded" style={{backgroundColor: '#ff5555', maxWidth: "150px"}}>
               <img src={senadoIcon} class="img-fluid"></img>
             </div>
           </div>
@@ -126,11 +153,11 @@ export function Header(){
           </div>
           <div class="d-flex flex-grow-1 justify-content-end m-5">
             <DropdownMenu optionsList={[
-              <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
-              <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
-              <Link to='/partidos' style={{color: "#000000", textDecoration: "none"}}>Todos os Partidos</Link>, 
-              <Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none"}}>Atualizações Recentes</Link>, 
-              <Link to='/sobre' style={{color: "#000000", textDecoration: "none"}}>Sobre o site</Link>]}> <MenuIcon/> </DropdownMenu>
+              <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
+              <div><Link to='/candidatos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+              <div><Link to='/partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+              <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
+              <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
           </div>
         </div>
       </div>}
@@ -142,11 +169,11 @@ export function Header(){
           </div>
           <div class="col" style={{minWidth: '80px', maxWidth:'80px'}}>
             <DropdownMenu optionsList={[
-              <Link to='/' style={{color: "#000000", textDecoration: "none"}}>Página Inicial</Link>, 
-              <Link to='/candidatos' style={{color: "#000000", textDecoration: "none"}}>Todos os Políticos</Link>, 
-              <Link to='/partidos' style={{color: "#000000", textDecoration: "none"}}>Todos os Partidos</Link>, 
-              <Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none"}}>Atualizações Recentes</Link>, 
-              <Link to='/sobre' style={{color: "#000000", textDecoration: "none"}}>Sobre o site</Link>]}> <MenuIcon/> </DropdownMenu>
+              <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
+              <div><Link to='/candidatos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+              <div><Link to='/partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+              <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
+              <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
           </div>
         </div>
     </div>}
