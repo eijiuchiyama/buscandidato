@@ -1,5 +1,6 @@
 import {Header} from './App.js'
 import icone from './iconefoto.png';
+import ListEntryPhoto from './components/ListEntryPhoto.js'
 
 function Candidato(){
     return(
@@ -11,21 +12,7 @@ function Candidato(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="card p-3">
-            <div class="card-header text-center rounded">
-                <h2>Partido Sem Nome</h2>
-            </div>
-            <div class="p-4">
-              <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
-            </div>
-            <div class="card-body">
-                <h3>Sigla do partido:</h3>
-                <h3>Ano de criação:</h3>
-                <h3>Presidente do partido:</h3>
-                <h3>Número de deputados federais:</h3>
-                <h3>Número de deputados senadores:</h3>
-                <h3>Número de vereadores na Câmara Municipal de São Paulo:</h3>
-                
-            </div>
+          <ListEntryPhoto text="Candidato Resultado" photo={icone}/>
         </div>
       </body>
     </html>

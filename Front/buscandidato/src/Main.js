@@ -15,6 +15,7 @@ import ResultadoPesquisa from './ResultadoPesquisa';
 import Atualizacoes from './Atualizacoes';
 import SobreSite from './SobreSite';
 import ListaPartidos from './ListaPartidos';
+import ListaPoliticos from './ListaPoliticos';
 import VotacoesProposicao from './VotacoesProposicao';
 
 function Main() {

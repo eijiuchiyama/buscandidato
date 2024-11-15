@@ -1,4 +1,5 @@
 import {Header} from './App.js'
+import ListEntry from './components/ListEntry.js'
 
 function ListaPartidos(){
     return(
@@ -11,20 +12,11 @@ function ListaPartidos(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded mb-5">
-                <h1>Sobre o site</h1>
+                <h1>Lista de todos os Partidos</h1>
             </div>
             <div class="card-body text-center">
-                <h3>Este site foi criado em 2024 por:</h3>
-                <div class="m-5">
-                    <h3>Fernando Yang</h3>
-                    <h3>João Mantovani</h3>
-                    <h3>Lucas dos Anjos</h3>
-                    <h3>Lucas Eiji Uchiyama</h3>
-                    <h3>Marcelo Spessoto</h3>
-                    <h3>Thiago Sikusawa</h3>
-                </div>
-                <h3>Desenvolvido com React, Bootstrap e Django</h3>
-                <h3>Licenciado sob GNU LESSER GENERAL PUBLIC LICENSE 3.0</h3>
+              <ListEntry text="Partido A"/>
+              <ListEntry text="Partido B"/>
             </div>
         </div>
       </body>
