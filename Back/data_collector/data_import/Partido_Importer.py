@@ -44,3 +44,16 @@ def import_Partido(data):
     )
     partido.save()
     print(partido.Sigla_Partido + " included.")
+
+def import_empty_Partido(id, sigla, nome):
+    if ID_exists(id):
+        print(sigla + " already included.")
+        return    
+
+    partido = models.Partido(
+        Sigla_Partido = sigla,
+        Nome = nome,
+        ID_Camara_Partido = id,
+    )
+    partido.save()
+    print(partido.Sigla_Partido + " included.")

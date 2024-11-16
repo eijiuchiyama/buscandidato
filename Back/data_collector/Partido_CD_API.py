@@ -35,7 +35,7 @@ def get_json(url):
 
 # Make requests to API
 URL_DATA = "https://dadosabertos.camara.leg.br/api/v2/partidos/<id>"
-url = "https://dadosabertos.camara.leg.br/api/v2/partidos?dataInicio=2000-01-01&dataFim=2024-11-13&ordem=ASC&ordenarPor=sigla"
+url = "https://dadosabertos.camara.leg.br/api/v2/partidos?dataFim=2024-11-13&ordem=ASC&ordenarPor=sigla"
 
 while url!= None:
     page = get_json(url)
@@ -48,7 +48,8 @@ while url!= None:
         Partido_data = get_json(link_partido_data)
         if Partido_data:
             PartidoImporter.import_Partido(Partido_data["dados"])
-
+        else:
+            PartidoImporter.import_empty_Partido(entry["id"], entry["sigla"], entry["nome"])
     url = nextPage(page["links"])
 
 print("Data successfully loaded into the database.")
