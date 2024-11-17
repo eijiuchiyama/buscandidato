@@ -3,10 +3,32 @@ import CamaraDeputadosPicture from './assets/CamaraDeputadosPicture.webp';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import { useMediaQuery } from 'react-responsive';
+import React, { useEffect, useState } from 'react';
 
 function CamaraDeputados(){
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isDesktop = useMediaQuery({ minWidth: 768 });
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
 
   return(
     <>
