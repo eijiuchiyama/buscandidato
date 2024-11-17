@@ -13,6 +13,17 @@ function Atualizacoes(){
             <div class="card-header text-center rounded mb-5">
                 <h1>Atualizações recentes</h1>
             </div>
+            <div>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+              <h3>Atualização</h3>
+            </div>
         </div>
       </body>
     </html>
