@@ -18,7 +18,7 @@ import ListaPartidos from './ListaPartidos';
 import ListaPoliticos from './ListaPoliticos';
 import VotacoesProposicao from './VotacoesProposicao';
 
-function Main() {
+function Rotas() {
   return (
     <Router>
       <Routes>
@@ -49,4 +49,4 @@ function Main() {
   );
 }
 
-export default Main;
+export default Rotas;

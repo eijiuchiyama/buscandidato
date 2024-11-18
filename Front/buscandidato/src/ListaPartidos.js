@@ -1,7 +1,33 @@
 import {Header} from './App.js'
 import ListEntry from './components/ListEntry.js'
+import React, { useEffect, useState } from 'react';
 
 function ListaPartidos(){
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/partidos/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
     return(
     <html>
       <head>
@@ -15,8 +41,9 @@ function ListaPartidos(){
                 <h1>Lista de todos os Partidos</h1>
             </div>
             <div class="card-body text-center">
-              <ListEntry text="Partido A"/>
-              <ListEntry text="Partido B"/>
+              {data.map((item) => (
+                <ListEntry text={item.fields.Nome}/>
+              ))}
             </div>
         </div>
       </body>
