@@ -24,26 +24,26 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/candidato" element={<Candidato />} />
-        <Route path="/candidato/mandato" element={<Mandato />} />
+        <Route path="/mandato" element={<Mandato />} />
         <Route path="/partido" element={<Partido />} />
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
-        <Route path="/instituicao/lista-frentes" element={<Frente />} />
-        <Route path="/instituicao/lista-orgaos" element={<Orgao />} />
-        <Route path="/instituicao/lista-proposicoes" element={<Proposicao />} />
-        <Route path="/instituicao/lista-votacoes" element={<Votacao />} />
-        <Route path="/instituicao/lista-membros" element={<Votacao />} />
-        <Route path="/instituicao/frente" element={<Frente />} />
-        <Route path="/instituicao/orgao" element={<Orgao />} />
-        <Route path="/instituicao/proposicao" element={<Proposicao />} />
-        <Route path="/instituicao/votacao" element={<Votacao />} />
+        <Route path="/lista-frentes" element={<Frente />} />
+        <Route path="/lista-orgaos" element={<Orgao />} />
+        <Route path="/lista-proposicoes" element={<Proposicao />} />
+        <Route path="/lista-votacoes" element={<Votacao />} />
+        <Route path="/lista-membros" element={<Votacao />} />
+        <Route path="/frente" element={<Frente />} />
+        <Route path="/orgao" element={<Orgao />} />
+        <Route path="/proposicao" element={<Proposicao />} />
+        <Route path="/votacao" element={<Votacao />} />
         <Route path="/resultados" element={<ResultadoPesquisa />} />
         <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
         <Route path="/lista-partidos" element={<ListaPartidos/>} />
         <Route path="/lista-politicos" element={<ListaPoliticos/>} />
-        <Route path="/instituicao/proposicao/resultados" element={<VotacoesProposicao />} />
+        <Route path="/resultados-votacao" element={<VotacoesProposicao />} />
       </Routes>
     </Router>
   );

@@ -1,8 +1,46 @@
 import {Header} from './App.js'
 import icone from './iconefoto.png';
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function Candidato(){
-    return(
+  const { candidato } = useParams();
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/politicos/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Buscar o item após os dados estarem carregados
+    if (data.length > 0 && candidato) {
+      const found = data.find((item) => item.fields.Nome === candidato);
+      setResult(found);
+    }
+  }, [data, candidato]);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
+  return(
     <html>
       <head>
       <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
@@ -12,24 +50,21 @@ function Candidato(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h2>Partido Sem Nome</h2>
+                <h2>{result.fields.Nome}</h2>
             </div>
             <div class="p-4">
               <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
             </div>
             <div class="card-body">
-                <h3>Sigla do partido:</h3>
-                <h3>Ano de criação:</h3>
-                <h3>Presidente do partido:</h3>
-                <h3>Número de deputados federais:</h3>
-                <h3>Número de deputados senadores:</h3>
-                <h3>Número de vereadores na Câmara Municipal de São Paulo:</h3>
-                
+                <h3>Partido atual:{result.fields.Partido_Atual}</h3>
+                <h3>Estado:{result.fields.Estado}</h3>
+                <h3>Estado de nascimento:{result.fields.Estado_Nascimento}</h3>
+                <h3></h3>
             </div>
         </div>
       </body>
     </html>
-    );
+  );
 }
 
 export default Candidato;

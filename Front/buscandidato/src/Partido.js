@@ -1,8 +1,12 @@
 import {Header} from './App.js'
 import icone from './iconefoto.png';
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function Partido(){
-    return(
+  const { partido } = useParams();
+
+  return(
     <html>
       <head>
       <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>

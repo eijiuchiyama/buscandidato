@@ -1,6 +1,7 @@
 import {Header} from './App.js'
 import ListEntry from './components/ListEntry.js'
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function ListaPartidos(){
   const [data, setData] = useState([]);
@@ -28,7 +29,7 @@ function ListaPartidos(){
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
-    return(
+  return(
     <html>
       <head>
       <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
@@ -42,13 +43,13 @@ function ListaPartidos(){
             </div>
             <div class="card-body text-center">
               {data.map((item) => (
-                <ListEntry text={item.fields.Nome}/>
+                <Link to={`/partido/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome}/></Link>
               ))}
             </div>
         </div>
       </body>
     </html>
-    );
+  );
 }
 
 export default ListaPartidos;
