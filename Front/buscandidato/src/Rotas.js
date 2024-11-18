@@ -23,9 +23,9 @@ function Rotas() {
     <Router>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/candidato" element={<Candidato />} />
+        <Route path="/candidato/:candidato" component={Candidato} element={<Candidato />} />
         <Route path="/mandato" element={<Mandato />} />
-        <Route path="/partido" element={<Partido />} />
+        <Route path="/partido/:partido" component={Partido} element={<Partido />} />
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />

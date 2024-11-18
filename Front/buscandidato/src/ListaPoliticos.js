@@ -14,6 +14,7 @@ function ListaPoliticos(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
+        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
@@ -41,11 +42,13 @@ function ListaPoliticos(){
             <div class="card-header text-center rounded mb-5">
                 <h1>Lista de todos os Políticos</h1>
             </div>
+            {data ? (
             <div class="card-body text-center">
               {data.map((item) => (
                 <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome}/></Link>
               ))}
             </div>
+            ) : (<></>)}
         </div>
       </body>
     </html>

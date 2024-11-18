@@ -32,7 +32,8 @@ function Candidato(){
   useEffect(() => {
     // Buscar o item após os dados estarem carregados
     if (data.length > 0 && candidato) {
-      const found = data.find((item) => item.fields.Nome === candidato);
+      
+      const found = data.find((item) => {return item.fields.Nome.toLowerCase() === candidato.toLowerCase(); });
       setResult(found);
     }
   }, [data, candidato]);
@@ -48,6 +49,7 @@ function Candidato(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
+        {result ? (
         <div class="card p-3">
             <div class="card-header text-center rounded">
                 <h2>{result.fields.Nome}</h2>
@@ -56,12 +58,17 @@ function Candidato(){
               <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
             </div>
             <div class="card-body">
-                <h3>Partido atual:{result.fields.Partido_Atual}</h3>
-                <h3>Estado:{result.fields.Estado}</h3>
-                <h3>Estado de nascimento:{result.fields.Estado_Nascimento}</h3>
-                <h3></h3>
+              <h3>Nome civil: {result.fields.Nome_Civil}</h3>
+              <h3>Partido atual: {result.fields.Partido_Atual}</h3>
+              <h3>Estado: {result.fields.Estado}</h3>
+              <h3>Estado de nascimento: {result.fields.Estado_Nascimento}</h3>
+              <h3>Município de nascimento: {result.fields.Municipio_Nascimento}</h3>
+              <h3>Data de nascimento: {result.fields.Data_Nascimento}</h3>
+              <h3>Sexo: {result.fields.Sexo}</h3>
+              <h3>Escolaridade: {result.fields.Escolaridade}</h3>
             </div>
-        </div>
+        </div> 
+      ) : (<></>)}
       </body>
     </html>
   );

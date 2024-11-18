@@ -41,11 +41,13 @@ function ListaPartidos(){
             <div class="card-header text-center rounded mb-5">
                 <h1>Lista de todos os Partidos</h1>
             </div>
+            {data ? (
             <div class="card-body text-center">
               {data.map((item) => (
                 <Link to={`/partido/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome}/></Link>
               ))}
             </div>
+            ) : (<></>)}
         </div>
       </body>
     </html>
