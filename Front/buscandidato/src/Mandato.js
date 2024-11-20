@@ -1,4 +1,4 @@
-import {Header} from './App.js';
+import {Header, Footer} from './App.js';
 import icone from './iconefoto.png';
 import Tabs from './components/Tabs.js';
 
@@ -26,6 +26,7 @@ function Candidato(){
                 <Tabs tabs={tabData} />
             </div>
         </div>
+        <Footer/>
         </body>
         </html>
     );

@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import icone from './iconefoto.png';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
@@ -52,7 +52,7 @@ function Candidato(){
         {result ? (
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h2>{result.fields.Nome}</h2>
+                <h2>{result.fields.Nome.toUpperCase()}</h2>
             </div>
             <div class="p-4">
               <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
@@ -69,6 +69,7 @@ function Candidato(){
             </div>
         </div> 
       ) : (<></>)}
+      <Footer/>
       </body>
     </html>
   );

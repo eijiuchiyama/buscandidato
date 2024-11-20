@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 
 function VotacoesProposicao(){
@@ -44,6 +44,7 @@ function VotacoesProposicao(){
                 </div>
             </div>
         </div>
+    <Footer/>
     </body>
             </html>
     );

@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import CamaraDeputadosPicture from './assets/CamaraDeputadosPicture.webp';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
@@ -38,6 +38,7 @@ function CamaraDeputados(){
               <Link to='/votacoes'><Button style={{width:"50%"}}>Votações</Button></Link>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>}
     {isMobile &&
@@ -68,6 +69,7 @@ function CamaraDeputados(){
               <Link to='/votacoes'><Button style={{width:"80%"}}>Votações</Button></Link>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>}
     </>

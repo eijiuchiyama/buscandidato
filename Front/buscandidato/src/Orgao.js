@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function Orgao(){
     return (
@@ -21,6 +21,7 @@ function Orgao(){
                 <h3>Sala:</h3>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
     );

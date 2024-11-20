@@ -1,6 +1,9 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import logo from './assets/Logo.png'
+import bootstrapLogo from './assets/bootstrap.png';
+import reactLogo from './assets/react.png';
+import djangoLogo from './assets/django.png';
 import camaraDeputadosIcon from './assets/CamaraDeputados.png'
 import senadoIcon from './assets/Senado.png'
 import camaraMunicipalIcon from './assets/CamaraMunicipal.png'
@@ -176,7 +179,30 @@ export function Header(){
               <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
           </div>
         </div>
-    </div>}
+      </div>}
+    </>
+  );
+}
+
+export function Footer(){
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isDesktop = useMediaQuery({ minWidth: 768 });
+  return(
+    <>
+      {isDesktop && 
+      <div class="container">
+        <div class="text-center m-5">
+          <img src={logo} style={{width:"30%"}} class="img-fluid m-2" alt="BootstrapLogo"></img>
+          <h5>2024</h5>
+        </div>
+      </div>}
+      {isMobile && 
+      <div class="container">
+        <div class="text-center m-5">
+          <img src={logo} style={{width:"50%"}} class="img-fluid m-2" alt="BootstrapLogo"></img>
+          <h5>2024</h5>
+        </div>
+      </div>}
     </>
   );
 }
@@ -207,6 +233,7 @@ function App() {
             </ContentBox>
           </div>
         </div>
+        <Footer/>
       </body>}
       {isMobile &&
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
@@ -224,6 +251,7 @@ function App() {
             </ContentBox>
           </div>
         </div>
+        <Footer/>
       </body>}
     </html>
   );

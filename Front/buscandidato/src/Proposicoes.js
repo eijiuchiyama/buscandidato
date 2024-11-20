@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import CamaraDeputadosPicture from './assets/CamaraDeputadosPicture.webp';
 import Button from 'react-bootstrap/Button';
 import proposicoes from './Proposicoes.json';
@@ -46,6 +46,7 @@ function Proposicoes(){
               <Button>Frentes</Button>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
   );

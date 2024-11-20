@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function Proposicao(){
     return (
@@ -22,6 +22,7 @@ function Proposicao(){
                 <h3>Temas:</h3>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
     );

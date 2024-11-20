@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import ListEntry from './components/ListEntry.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -49,6 +49,7 @@ function ListaPartidos(){
             </div>
             ) : (<></>)}
         </div>
+        <Footer/>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function Frente(){
     return (
@@ -22,6 +22,7 @@ function Frente(){
             </div>
         </div>
       </body>
+      <Footer/>
     </html>
     );
 }

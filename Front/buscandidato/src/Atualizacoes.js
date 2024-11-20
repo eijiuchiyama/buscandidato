@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function Atualizacoes(){
     return(
@@ -25,6 +25,7 @@ function Atualizacoes(){
               <h3>Atualização</h3>
             </div>
         </div>
+        <Footer />
       </body>
     </html>
     );

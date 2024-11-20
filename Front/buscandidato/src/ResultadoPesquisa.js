@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import icone from './iconefoto.png';
 import ListEntryPhoto from './components/ListEntryPhoto.js'
 
@@ -14,6 +14,7 @@ function Candidato(){
         <div class="card p-3">
           <ListEntryPhoto text="Candidato Resultado" photo={icone}/>
         </div>
+        <Footer/>
       </body>
     </html>
     );

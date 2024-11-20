@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 import icone from './iconefoto.png';
 import CamaraDeputadosPicture from './assets/CamaraDeputadosPicture.webp';
 import Button from 'react-bootstrap/Button';
@@ -52,6 +52,7 @@ function MembrosCD(){
               <Button>Frentes</Button>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
   );

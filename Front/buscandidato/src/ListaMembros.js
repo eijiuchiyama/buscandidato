@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function ListaPartidos(){
     return(
@@ -27,6 +27,7 @@ function ListaPartidos(){
                 <h3>Licenciado sob GNU LESSER GENERAL PUBLIC LICENSE 3.0</h3>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
     );

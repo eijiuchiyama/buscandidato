@@ -1,4 +1,4 @@
-import {Header} from './App.js'
+import {Header, Footer} from './App.js'
 
 function Votacao(){
     return (
@@ -24,6 +24,7 @@ function Votacao(){
                 <h3>Não:</h3>
             </div>
         </div>
+        <Footer/>
       </body>
     </html>
     );
