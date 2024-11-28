@@ -5,11 +5,24 @@ from .models import *
 
 def politico(request):
     queryset = Politico.objects.all()
+    
+    nome = request.GET.get('nome', None)
+    if nome:
+        queryset = queryset.filter(Nome__icontains=nome)
+
     data = serializers.serialize("json", queryset)
     return HttpResponse(data, content_type='application/json')
 
 def partido(request):
     queryset = Partido.objects.all()
+
+    nome = request.GET.get('nome', None)
+    sigla = request.GET.get('sigla', None)
+    if nome:
+        queryset = queryset.filter(Nome__icontains=nome)
+    if sigla:
+        queryset = queryset.filter(Sigla_Partido__icontains=sigla)
+    
     data = serializers.serialize("json", queryset)
     return HttpResponse(data, content_type='application/json')
 
