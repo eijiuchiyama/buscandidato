@@ -1,9 +1,6 @@
 import './App.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import logo from './assets/Logo.png'
-import bootstrapLogo from './assets/bootstrap.png';
-import reactLogo from './assets/react.png';
-import djangoLogo from './assets/django.png';
 import camaraDeputadosIcon from './assets/CamaraDeputados.png'
 import senadoIcon from './assets/Senado.png'
 import camaraMunicipalIcon from './assets/CamaraMunicipal.png'
@@ -25,13 +22,19 @@ function SearchBarContent(){
   const isDesktop = useMediaQuery({ minWidth: 768 });
   var tag=0;
   const [tagText, setTagText] = useState("Tags");
+  const [valorPesquisa, setValorPesquisa] = useState("");
 
   const navigate = useNavigate();
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
-      navigate('/resultados');
+      if(tagText == "Candidato")
+        navigate(`/resultados/politicos/${valorPesquisa}`);
+      else if(tagText == "Partido")
+        navigate(`/resultados/partido/${valorPesquisa}`);
+      else
+        navigate(`/resultados/tudo/${valorPesquisa}`);
     }
   };
 
@@ -60,7 +63,7 @@ function SearchBarContent(){
             </DropdownMenu>
           </div>
           <div class="col-9">
-             <Form.Control onKeyDown={handleKeyDown}
+             <Form.Control onKeyDown={handleKeyDown} onChange={(e) => setValorPesquisa(e.target.value)}
                 placeholder="Procure por um candidato ou político"
               />
           </div>
@@ -77,9 +80,9 @@ function SearchBarContent(){
             </DropdownMenu>
           </div>
           <div class="col-6">
-            <Form.Control onKeyDown={handleKeyDown}
+            <Form.Control onKeyDown={handleKeyDown} onChange={(e) => setValorPesquisa(e.target.value)}
               placeholder="Procure por um candidato ou político"
-              />
+            />
           </div>
         </div>
       </div>}

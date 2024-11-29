@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 function Candidato(){
+  
   const { candidato } = useParams();
 
   const [data, setData] = useState([]);

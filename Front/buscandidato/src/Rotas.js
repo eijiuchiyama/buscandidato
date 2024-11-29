@@ -38,7 +38,7 @@ function Rotas() {
         <Route path="/orgao" element={<Orgao />} />
         <Route path="/proposicao" element={<Proposicao />} />
         <Route path="/votacao" element={<Votacao />} />
-        <Route path="/resultados" element={<ResultadoPesquisa />} />
+        <Route path="/resultados/:tipoPesquisa/:nome" element={<ResultadoPesquisa />} />
         <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
         <Route path="/lista-partidos" element={<ListaPartidos/>} />
