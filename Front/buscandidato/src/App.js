@@ -50,6 +50,12 @@ function SearchBarContent(){
     setTagText("Partido");
   };
 
+  const clickTudo = (event) => {
+    tag=3;
+    console.log(tag);
+    setTagText("Tags");
+  }
+
   return (
     <>
       {isDesktop &&
@@ -58,7 +64,8 @@ function SearchBarContent(){
           <div class="col-3" style={{minWidth: '120px', maxWidth:'120px'}}>
             <DropdownMenu optionsList={[
               <div onClick={clickCandidato}>Candidato</div>, 
-              <div onClick={clickPartido}>Partido</div>]} >
+              <div onClick={clickPartido}>Partido</div>,
+              <div onClick={clickTudo}>Tudo</div>]} >
               <h7>{tagText}</h7>
             </DropdownMenu>
           </div>
@@ -75,7 +82,8 @@ function SearchBarContent(){
           <div class="col-6" style={{minWidth: '120px', maxWidth:'120px'}}>
             <DropdownMenu optionsList={[
               <div onClick={clickCandidato}>Candidato</div>, 
-              <div onClick={clickPartido}>Partido</div>]}>
+              <div onClick={clickPartido}>Partido</div>,
+              <div onClick={clickTudo}>Tudo</div>]}>
               <h7>{tagText}</h7>
             </DropdownMenu>
           </div>
