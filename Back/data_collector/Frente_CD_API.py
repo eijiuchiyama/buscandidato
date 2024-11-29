@@ -3,7 +3,7 @@ import time
 import requests
 
 import data_import.Frente_Importer as FrenteImporter
-import data_import.Membro_Importer as MembroImporter
+import data_import.Integrante_Frente_Importer as MembroImporter
 
 # Function to get URL of next page of API
 def nextPage(Links):
@@ -51,6 +51,8 @@ while url!= None:
         FrenteImporter.import_Frente(Frente_data)
         
         Frente = FrenteImporter.get_Frente_by_ID(id)
+        if Frente == None:
+            continue
         link_member_data = URL_MEMBER.replace("<id>", str(id))
         Member_data = get_json(link_member_data)
         if Member_data:
