@@ -8,7 +8,8 @@ function Resultado(){
 
   const { tipoPesquisa, nome } = useParams();
 
-  const [data, setData] = useState([]);
+  const [dataPoliticos, setDataPoliticos] = useState([]);
+  const [dataPartidos, setDataPartidos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -19,11 +20,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPoliticos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -36,11 +36,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPartidos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -52,11 +51,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPartidos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -69,11 +67,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPoliticos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -85,11 +82,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPartidos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -101,11 +97,10 @@ function Resultado(){
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
         }
-        console.log(data[0]);
         return response.json();
       })
       .then((json) => {
-        setData(json);
+        setDataPartidos(json);
         setLoading(false);
       })
       .catch((err) => {
@@ -119,11 +114,11 @@ function Resultado(){
   if (error) return <p>Erro: {error}</p>;
 
   const renderTitle = () => {
-    if (data.length > 0) {
+    if (dataPartidos.length > 0 || dataPoliticos.length > 0) {
         return <h1>Foram encontrados resultados para a sua pesquisa</h1>;
     }
     return <h1>Não foram encontrados resultados para a sua pesquisa</h1>;
-};
+  };
 
   return(
   <html>
@@ -137,9 +132,18 @@ function Resultado(){
           <div class="card-header text-center rounded mb-5">
               {renderTitle()}
           </div>
-          {data ? (
+          {dataPartidos ? (
           <div class="card-body text-center">
-            {data.map((item) => (
+            {dataPartidos.map((item) => (
+              <Link to={`/partido/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}>
+                <ListEntry text={item.fields.Nome.toUpperCase()}/>
+              </Link>
+            ))}
+          </div>
+          ) : (<></>)}
+          {dataPoliticos ? (
+          <div class="card-body text-center">
+            {dataPoliticos.map((item) => (
               <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}>
                 <ListEntry text={item.fields.Nome.toUpperCase()}/>
               </Link>

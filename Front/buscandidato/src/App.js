@@ -32,7 +32,7 @@ function SearchBarContent(){
       if(tagText == "Candidato")
         navigate(`/resultados/politicos/${valorPesquisa}`);
       else if(tagText == "Partido")
-        navigate(`/resultados/partido/${valorPesquisa}`);
+        navigate(`/resultados/partidos/${valorPesquisa}`);
       else
         navigate(`/resultados/tudo/${valorPesquisa}`);
     }
