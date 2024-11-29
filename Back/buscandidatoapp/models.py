@@ -41,6 +41,7 @@ class Orgao(models.Model):
     Data_Inicio = models.DateField(blank=True, null=True)
     Data_Fim = models.DateField(blank=True, null=True)
     Website = models.URLField(blank=True, null=True)
+    Tipo = models.CharField(max_length=255, blank=True, null=True)
 
 class Votacao(models.Model):
     ID_Camara_Votacao = models.IntegerField(primary_key=True)
@@ -54,6 +55,7 @@ class Frente(models.Model):
     Nome = models.CharField(max_length=255, blank=True, null=True)
     CPF_Coordenador = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     PDF_Frente = models.FileField(blank=True, null=True)
+    Legislatura = models.CharField(max_length=255, blank=True, null=True)
 
 class Proposicao(models.Model):
     ID_Camara_Proposicao = models.IntegerField(primary_key=True)
@@ -66,8 +68,13 @@ class Proposicao(models.Model):
     Keywords = models.CharField(max_length=255, blank=True, null=True)
     Tipo = models.CharField(max_length=255, blank=True, null=True)
 
+# ========================================= Relacoes =========================================
+class Profissao(models.Model):
+    Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
+    Titulo = models.CharField(max_length=255, blank=True, null=True)
+    Data = models.DateField(blank=True, null=True)
+
 class Despesa(models.Model):
-    Codigo_Despesa = models.CharField(max_length=15, primary_key=True)
     CPF_Politico = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Tipo_Despesa = models.CharField(max_length=255, blank=True, null=True)
     PDF_Documento = models.FileField(blank=True, null=True)
@@ -75,12 +82,6 @@ class Despesa(models.Model):
     Fornecedor = models.CharField(max_length=255, blank=True, null=True)
     Data = models.DateField(blank=True, null=True)
     CNPJ_Fornecedor = models.CharField(max_length=255, blank=True, null=True)
-
-# ========================================= Relacoes =========================================
-class Profissao(models.Model):
-    Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
-    Titulo = models.CharField(max_length=255, blank=True, null=True)
-    Data = models.DateField(blank=True, null=True)
 
 class Mandato(models.Model):
     Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
