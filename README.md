@@ -17,7 +17,7 @@ Na pasta _buscandidato_ do front, abrir o terminal e utilizar o comando `npm sta
 
 ### Back-end
 
-Na pasta do back, abrir o terminal e utilizar o comando `python3 manage.py runserver`. O back-end será então exibido no navegador em http://127.0.0.1:8000/
+Na pasta do back, abrir o terminal e utilizar o comando `python3 manage.py runserver`. O back-end será então exibido no navegador em http://127.0.0.1:8000/admin/
 
 ## Autores
 
