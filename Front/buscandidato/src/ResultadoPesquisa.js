@@ -47,6 +47,22 @@ function Resultado(){
         setError(err.message);
         setLoading(false);
       });
+      fetch(`/api/partidos?sigla=${nome}`) // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        console.log(data[0]);
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
     } else{
       fetch(`/api/politicos?nome=${nome}`) // URL da sua API
       .then((response) => {
@@ -65,6 +81,22 @@ function Resultado(){
         setLoading(false);
       });
       fetch(`/api/partidos?nome=${nome}`) // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        console.log(data[0]);
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+      fetch(`/api/partidos?sigla=${nome}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -108,7 +140,9 @@ function Resultado(){
           {data ? (
           <div class="card-body text-center">
             {data.map((item) => (
-              <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+              <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}>
+                <ListEntry text={item.fields.Nome.toUpperCase()}/>
+              </Link>
             ))}
           </div>
           ) : (<></>)}
