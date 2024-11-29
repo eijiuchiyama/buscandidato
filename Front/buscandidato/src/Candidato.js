@@ -56,7 +56,7 @@ function Candidato(){
                 <h2>{result.fields.Nome.toUpperCase()}</h2>
             </div>
             <div class="p-4">
-              <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
+              <img src={result.fields.Foto} class="mx-auto d-block rounded" style={{width:'30vw', maxWidth:"300px"}}/>
             </div>
             <div class="card-body">
               <h3>Nome civil: {result.fields.Nome_Civil}</h3>
