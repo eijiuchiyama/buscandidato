@@ -77,8 +77,8 @@ class Profissao(models.Model):
 class Despesa(models.Model):
     CPF_Politico = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Tipo_Despesa = models.CharField(max_length=255, blank=True, null=True)
-    PDF_Documento = models.FileField(blank=True, null=True)
-    Valor_Atual = models.IntegerField(blank=True, null=True)
+    PDF_Documento = models.URLField(max_length=255, blank=True, null=True)
+    Valor_Atual = models.CharField(max_length=255, blank=True, null=True)
     Fornecedor = models.CharField(max_length=255, blank=True, null=True)
     Data = models.DateField(blank=True, null=True)
     CNPJ_Fornecedor = models.CharField(max_length=255, blank=True, null=True)
@@ -112,6 +112,10 @@ class Autor_Proposicao(models.Model):
 class Integrante_Orgao(models.Model):
     Sigla_Orgao = models.ForeignKey(Orgao, on_delete=models.CASCADE)
     Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
+    Cargo = models.CharField(max_length=255, blank=True, null=True)
+    Legislatura = models.CharField(max_length=255, blank=True, null=True)
+    Periodo_Inicio = models.DateField(blank=True, null=True)
+    Periodo_Fim = models.DateField(blank=True, null=True)
 
 class Integrante_Frente(models.Model):
     ID_Camara_Frente = models.ForeignKey(Frente, on_delete=models.CASCADE)

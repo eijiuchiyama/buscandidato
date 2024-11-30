@@ -35,6 +35,6 @@ def import_Member(Frente, data):
     
     if not integrante_frente_exists(integrante):
         integrante.save()
-        print("Politico " + politico.Nome_Civil + "(" + politico.CPF + " of " + Frente.Nome + ") included.")
+        print("Politico " + politico.Nome_Civil + "(" + politico.CPF + ") of " + Frente.Nome + " included.")
     else:
-        print("Politico " + politico.Nome_Civil + "(" + politico.CPF + " of " + Frente.Nome + ") already included.")
+        print("Politico " + politico.Nome_Civil + "(" + politico.CPF + ") of " + Frente.Nome + " already included.")
