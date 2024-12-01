@@ -45,7 +45,7 @@ function ListaProposicoes(){
                 {data ? (
                 <div class="card-body text-center">
                   {data.map((item) => (
-                    <Link to={`/proposicao/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+                    <Link to={`/proposicao/${item.pk}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={`${item.fields.Tipo} ${item.fields.Numero}/${item.fields.Ano_Apresentacao}`}/></Link>
                   ))}
                 </div>
                 ) : (<></>)}

@@ -33,7 +33,7 @@ function Proposicao(){
     // Buscar o item após os dados estarem carregados
     if (data.length > 0 && proposicao) {
       
-      const found = data.find((item) => {return item.fields.Nome.toLowerCase() === proposicao.toLowerCase(); });
+      const found = data.find((item) => {return item.pk == proposicao; });
       setResult(found);
     }
   }, [data, proposicao]);
@@ -54,13 +54,14 @@ function Proposicao(){
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
             <div class="text-center mb-5">
                 <h3>Câmara dos Deputados</h3>
-                <h1>Proposição 1</h1>
+                <h1>{`${result.fields.Tipo} ${result.fields.Numero}/${result.fields.Ano_Apresentacao}`}</h1>
             </div>
             <div>
-                <h3>Ano:</h3>
+                <h3>Data de Apresentacao: {result.fields.Data_Apresentacao}</h3>
                 <h3>Autores:</h3>
-                <h3>Ementa:</h3>
-                <h3>Temas:</h3>
+                <h3>Ementa: {result.fields.Ementa}</h3>
+                <h3>Temas: {result.fields.Keywords}</h3>
+                <h3>Situação: {result.fields.Situacao}</h3>
             </div>
         </div>
         ) : (<></>) }
