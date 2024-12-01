@@ -37,7 +37,7 @@ def get_json(url):
 # Make requests to API
 URL_DATA = "https://dadosabertos.camara.leg.br/api/v2/orgaos/<id>"
 URL_MEMBER = "https://dadosabertos.camara.leg.br/api/v2/orgaos/<id>/membros?dataInicio=2000-01-01&dataFim=2024-11-18"
-url = "https://dadosabertos.camara.leg.br/api/v2/orgaos?dataInicio=2000-01-01&dataFim=2024-11-18&ordem=ASC&ordenarPor=id&pagina=8&itens=100"
+url = "https://dadosabertos.camara.leg.br/api/v2/orgaos?dataInicio=2000-01-01&dataFim=2024-11-18&ordem=ASC&ordenarPor=id&itens=100"
 
 def include_member(Orgao, link):
     while link != None:

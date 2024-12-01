@@ -40,11 +40,12 @@ def get_json(url):
 
 # Make requests to API
 URL_DESPESA = "https://dadosabertos.camara.leg.br/api/v2/deputados/<id>/despesas?idLegislatura=57,56,55,54,53,52,51&ordem=ASC&ordenarPor=ano"
+start = 0
 
-for number, politico in enumerate(models.Politico.objects.all()[0:]):
+for number, politico in enumerate(models.Politico.objects.all()[start:]):
     id = politico.ID_Camara_Politico
 
-    print(number + 0)
+    print(number + start)
 
     link_despesa_data = URL_DESPESA.replace("<id>", str(id))
     Despesa_data = get_json(link_despesa_data)

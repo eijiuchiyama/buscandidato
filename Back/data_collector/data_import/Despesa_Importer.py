@@ -22,6 +22,8 @@ def get_date(date_time):
 def despesa_exists(despesa):
     return models.Despesa.objects.filter(CPF_Politico = despesa.CPF_Politico,
                                         Tipo_Despesa = despesa.Tipo_Despesa,
+                                        Codigo_Documento = despesa.Codigo_Documento,
+                                        Numero_Documento = despesa.Numero_Documento,
                                         PDF_Documento = despesa.PDF_Documento,
                                         Valor_Atual = despesa.Valor_Atual,
                                         Fornecedor = despesa.Fornecedor,
@@ -32,6 +34,8 @@ def import_Despesa(politico, data):
     despesa = models.Despesa(
         CPF_Politico = politico,
         Tipo_Despesa = data["tipoDespesa"],
+        Codigo_Documento = data["codDocumento"],
+        Numero_Documento = data["numDocumento"],
         PDF_Documento = data["urlDocumento"],
         Valor_Atual = data["valorDocumento"],
         Fornecedor = data["nomeFornecedor"],

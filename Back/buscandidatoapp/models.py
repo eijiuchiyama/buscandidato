@@ -77,6 +77,8 @@ class Profissao(models.Model):
 class Despesa(models.Model):
     CPF_Politico = models.ForeignKey(Politico, blank=True, null=True, on_delete=models.CASCADE)
     Tipo_Despesa = models.CharField(max_length=255, blank=True, null=True)
+    Codigo_Documento = models.CharField(max_length=255, blank=True, null=True)
+    Numero_Documento = models.CharField(max_length=255, blank=True, null=True)
     PDF_Documento = models.URLField(max_length=255, blank=True, null=True)
     Valor_Atual = models.CharField(max_length=255, blank=True, null=True)
     Fornecedor = models.CharField(max_length=255, blank=True, null=True)
