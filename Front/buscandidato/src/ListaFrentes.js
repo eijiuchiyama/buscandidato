@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 function ListaFrentes(){
 
-
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -42,7 +41,7 @@ function ListaFrentes(){
         <div class="card p-3">
             <div class="card-header text-center rounded mb-5">
                 <h3>Câmara dos Deputados</h3>
-                <h1>Lista de todos as Frentes</h1>
+                <h1>Lista de todas as Frentes</h1>
             </div>
             {data ? (
             <div class="card-body text-center">

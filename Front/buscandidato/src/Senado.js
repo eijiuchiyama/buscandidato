@@ -31,11 +31,11 @@ function Senado(){
                 <h3>Número de membros:</h3>
             </div>
             <div class="text-center d-grid gap-2">
-              <Link to='/membros'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
-              <Link to='/frentes'><Button style={{width:"50%"}}>Frentes</Button></Link>
-              <Link to='/orgaos'><Button style={{width:"50%"}}>Órgãos</Button></Link>
-              <Link to='/proposicoes'><Button style={{width:"50%"}}>Proposições</Button></Link>
-              <Link to='/votacoes'><Button style={{width:"50%"}}>Votações</Button></Link>
+              <Link to='/lista-membros'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
+              <Link to='/lista-frentes'><Button style={{width:"50%"}}>Frentes</Button></Link>
+              <Link to='/lista-orgaos'><Button style={{width:"50%"}}>Órgãos</Button></Link>
+              <Link to='/lista-proposicoes'><Button style={{width:"50%"}}>Proposições</Button></Link>
+              <Link to='/lista-votacoes'><Button style={{width:"50%"}}>Votações</Button></Link>
             </div>
         </div>
         <Footer/>
@@ -62,11 +62,11 @@ function Senado(){
                 <h3>Número de membros:</h3>
             </div>
             <div class="text-center d-grid gap-2">
-              <Link to='/membros'><Button style={{width:"80%"}}>Lista de membros</Button></Link>
-              <Link to='/frentes'><Button style={{width:"80%"}}>Frentes</Button></Link>
-              <Link to='/orgaos'><Button style={{width:"80%"}}>Órgãos</Button></Link>
-              <Link to='/proposicoes'><Button style={{width:"80%"}}>Proposições</Button></Link>
-              <Link to='/votacoes'><Button style={{width:"80%"}}>Votações</Button></Link>
+              <Link to='/lista-membros'><Button style={{width:"80%"}}>Lista de membros</Button></Link>
+              <Link to='/lista-frentes'><Button style={{width:"80%"}}>Frentes</Button></Link>
+              <Link to='/lista-orgaos'><Button style={{width:"80%"}}>Órgãos</Button></Link>
+              <Link to='/lista-proposicoes'><Button style={{width:"80%"}}>Proposições</Button></Link>
+              <Link to='/lista-votacoes'><Button style={{width:"80%"}}>Votações</Button></Link>
             </div>
         </div>
         <Footer/>

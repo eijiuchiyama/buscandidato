@@ -64,7 +64,7 @@ function Frente(){
               <h3>E-mail:</h3>
               <h3>Telefone:</h3>
           </div>
-          <div style={{ height: '500px' }}>
+          <div class="m-5 border" style={{ height: '500px', borderWidth: '5px' }}>
             <Worker workerUrl={"/pdf.worker.js"}>
                 <Viewer fileUrl={result.fields.PDF_Frente} />
             </Worker>
