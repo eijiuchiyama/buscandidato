@@ -38,8 +38,24 @@ function Orgao(){
     }
   }, [data, orgao]);
 
+
+
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
+
+  const getSala = () => {
+    if (result.fields.Sala == null) {
+        return "-";
+    }
+    return result.fields.Sala;
+  };
+
+  const getDataFim = () => {
+    if (result.fields.Data_Fim == null) {
+        return "-";
+    }
+    return result.fields.Data_Fim;
+  };
 
   return (
   <html>
@@ -58,7 +74,9 @@ function Orgao(){
           </div>
           <div>
               <h3>Sigla: {result.pk}</h3>
-              <h3>Sala: {result.fields.Sala}</h3>
+              <h3>Sala: {getSala()}</h3>
+              <h3>Data de início: {result.fields.Data_Inicio}</h3>
+              <h3>Data de fim: {getDataFim()}</h3>
           </div>
       </div>
       ) : (<></>)}
