@@ -54,7 +54,7 @@ function Orgao(){
       <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
           <div class="text-center mb-5">
               <h3>Câmara dos Deputados</h3>
-              <h1>{result.fields.Nome}</h1>
+              <h1>{result.fields.Nome.toUpperCase()}</h1>
           </div>
           <div>
               <h3>Sigla: {result.pk}</h3>

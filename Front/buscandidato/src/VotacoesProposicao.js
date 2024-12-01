@@ -1,8 +1,37 @@
-import React from 'react';
-import {Header, Footer} from './App.js'
-
+import {Header, Footer} from './App.js';
+import ListEntry from './components/ListEntry.js';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 function VotacoesProposicao(){
+    const { proposicao } = useParams();
+
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/votacoes/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
     return (
     <html>
     <head>

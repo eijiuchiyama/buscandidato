@@ -1,6 +1,46 @@
 import {Header, Footer} from './App.js'
+import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function Votacao(){
+
+  const { votacao } = useParams();
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [result, setResult] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/votacoes/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    // Buscar o item após os dados estarem carregados
+    if (data.length > 0 && votacao) {
+      
+      const found = data.find((item) => {return item.fields.Nome.toLowerCase() === votacao.toLowerCase(); });
+      setResult(found);
+    }
+  }, [data, votacao]);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
     return (
     <html>
       <head>
@@ -10,6 +50,7 @@ function Votacao(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
+        {result ? (
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
             <div class="text-center mb-5">
                 <h3>Câmara dos Deputados</h3>
@@ -24,6 +65,7 @@ function Votacao(){
                 <h3>Não:</h3>
             </div>
         </div>
+        ) : (<></>) }
         <Footer/>
       </body>
     </html>

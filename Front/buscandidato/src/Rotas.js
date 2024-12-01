@@ -48,7 +48,7 @@ function Rotas() {
         <Route path="/sobre" element={<SobreSite />} />
         <Route path="/lista-partidos" element={<ListaPartidos/>} />
         <Route path="/lista-politicos" element={<ListaPoliticos/>} />
-        <Route path="/resultados-votacao" element={<VotacoesProposicao />} />
+        <Route path="/votacoes-proposicao/:proposicao" component={Proposicao} element={<VotacoesProposicao />} />
       </Routes>
     </Router>
   );

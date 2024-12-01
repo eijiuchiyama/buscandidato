@@ -1,36 +1,59 @@
 import {Header, Footer} from './App.js'
+import ListEntry from './components/ListEntry.js'
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function ListaPartidos(){
+function ListaProposicoes(){
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/proposicoes/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
     return(
-    <html>
-      <head>
-      <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-      </head>
-      <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
-        <Header />
-        <div class="card p-3">
-            <div class="card-header text-center rounded mb-5">
-                <h1>Sobre o site</h1>
-            </div>
-            <div class="card-body text-center">
-                <h3>Este site foi criado em 2024 por:</h3>
-                <div class="m-5">
-                    <h3>Fernando Yang</h3>
-                    <h3>João Mantovani</h3>
-                    <h3>Lucas dos Anjos</h3>
-                    <h3>Lucas Eiji Uchiyama</h3>
-                    <h3>Marcelo Spessoto</h3>
-                    <h3>Thiago Sikusawa</h3>
+        <html>
+          <head>
+          <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+          </head>
+          <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
+            <Header />
+            <div class="card p-3">
+                <div class="card-header text-center rounded mb-5">
+                    <h3>Câmara dos Deputados</h3>
+                    <h1>Lista de todas as Proposições</h1>
                 </div>
-                <h3>Desenvolvido com React, Bootstrap e Django</h3>
-                <h3>Licenciado sob GNU LESSER GENERAL PUBLIC LICENSE 3.0</h3>
+                {data ? (
+                <div class="card-body text-center">
+                  {data.map((item) => (
+                    <Link to={`/proposicao/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+                  ))}
+                </div>
+                ) : (<></>)}
             </div>
-        </div>
-        <Footer/>
-      </body>
-    </html>
+            <Footer />
+          </body>
+        </html>
     );
 }
 
-export default ListaPartidos;
+export default ListaProposicoes;
