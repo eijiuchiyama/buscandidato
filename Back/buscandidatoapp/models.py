@@ -46,7 +46,6 @@ class Orgao(models.Model):
 class Votacao(models.Model):
     ID_Camara_Votacao = models.IntegerField(primary_key=True)
     Sigla_Orgao = models.ForeignKey(Orgao, blank=True, null=True, on_delete=models.CASCADE)
-    Qty_Votos = models.IntegerField(blank=True, null=True)
     Resultado = models.CharField(max_length=255, blank=True, null=True)
     Data = models.DateField(blank=True, null=True)
 
@@ -61,10 +60,11 @@ class Proposicao(models.Model):
     ID_Camara_Proposicao = models.IntegerField(primary_key=True)
     Sigla_Orgao = models.ForeignKey(Orgao, blank=True, null=True, on_delete=models.CASCADE)
     Numero = models.CharField(max_length=255, blank=True, null=True)
-    Ementa = models.FileField(blank=True, null=True)
-    Ano_Proposicao = models.CharField(max_length=255, blank=True, null=True)
+    Ementa = models.CharField(max_length=255, blank=True, null=True)
+    Ano_Apresentacao = models.CharField(max_length=255, blank=True, null=True)
+    Data_Apresentacao = models.DateField(blank=True, null=True)
     Situacao = models.CharField(max_length=255, blank=True, null=True)
-    Data_Situacao = models.CharField(max_length=255, blank=True, null=True)
+    Data_Situacao = models.DateField(blank=True, null=True)
     Keywords = models.CharField(max_length=255, blank=True, null=True)
     Tipo = models.CharField(max_length=255, blank=True, null=True)
 
@@ -110,6 +110,8 @@ class Votacao_Proposicao(models.Model):
 class Autor_Proposicao(models.Model):
     ID_Camara_Proposicao = models.ForeignKey(Proposicao, on_delete=models.CASCADE)
     Politico_CPF = models.ForeignKey(Politico, on_delete=models.CASCADE)
+    Tipo = models.CharField(max_length=255, blank=True, null=True)
+    Nome = models.CharField(max_length=255, blank=True, null=True)
 
 class Integrante_Orgao(models.Model):
     Sigla_Orgao = models.ForeignKey(Orgao, on_delete=models.CASCADE)
