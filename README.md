@@ -17,7 +17,15 @@ Na pasta _buscandidato_ do front, abrir o terminal e utilizar o comando `npm sta
 
 ### Back-end
 
-Na pasta do back, abrir o terminal e utilizar o comando `python3 manage.py runserver`. O back-end será então exibido no navegador em http://127.0.0.1:8000/admin/
+O back-end contém um arquivo marcado com GIT LFS. Para ser possível acessar o arquivo e executar o comando para iniciar o back-end, é preciso instalar o LFS na máquina, com os comandos:
+
+`sudo apt install git-lfs`
+
+`git lfs install`
+
+Para puxar o arquivo para a sua máquina, execute, no repositório `git lfs pull`
+
+Após isso, na pasta do back, abrir o terminal e utilizar o comando `python3 manage.py runserver`. O back-end será então exibido no navegador em http://127.0.0.1:8000/admin/
 
 ## Autores
 
