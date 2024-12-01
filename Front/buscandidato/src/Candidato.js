@@ -1,5 +1,4 @@
 import {Header, Footer} from './App.js'
-import icone from './iconefoto.png';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 

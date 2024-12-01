@@ -16,6 +16,11 @@ import Atualizacoes from './Atualizacoes';
 import SobreSite from './SobreSite';
 import ListaPartidos from './ListaPartidos';
 import ListaPoliticos from './ListaPoliticos';
+import ListaFrentes from './ListaFrentes';
+import ListaOrgaos from './ListaOrgaos'
+import ListaProposicoes from './ListaProposicoes';
+import ListaVotacoes from './ListaVotacoes'
+import ListaMembros from './ListaMembros'
 import VotacoesProposicao from './VotacoesProposicao';
 
 function Rotas() {
@@ -29,12 +34,12 @@ function Rotas() {
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
-        <Route path="/lista-frentes" element={<Frente />} />
-        <Route path="/lista-orgaos" element={<Orgao />} />
-        <Route path="/lista-proposicoes" element={<Proposicao />} />
-        <Route path="/lista-votacoes" element={<Votacao />} />
-        <Route path="/lista-membros" element={<Votacao />} />
-        <Route path="/frente" element={<Frente />} />
+        <Route path="/lista-frentes" element={<ListaFrentes />} />
+        <Route path="/lista-orgaos" element={<ListaOrgaos />} />
+        <Route path="/lista-proposicoes" element={<ListaProposicoes />} />
+        <Route path="/lista-votacoes" element={<ListaVotacoes />} />
+        <Route path="/lista-membros" element={<ListaMembros />} />
+        <Route path="/frente/:frente" component={Frente} element={<Frente />} />
         <Route path="/orgao" element={<Orgao />} />
         <Route path="/proposicao" element={<Proposicao />} />
         <Route path="/votacao" element={<Votacao />} />
