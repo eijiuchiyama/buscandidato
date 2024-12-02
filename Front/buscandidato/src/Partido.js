@@ -58,12 +58,11 @@ function Partido(){
               <img src={icone} class="mx-auto d-block" style={{width:'30vw'}}/>
             </div>
             <div class="card-body">
-                <h3>Sigla do partido:</h3>
-                <h3>Ano de criação:</h3>
+                <h3>Sigla do partido: {result.pk}</h3>
                 <h3>Presidente do partido:</h3>
                 <h3>Número de deputados federais: {result.fields.Qty_Membros_Camara}</h3>
-                <h3>Número de deputados senadores:</h3>
-                <h3>Número de vereadores na Câmara Municipal de São Paulo:</h3>
+                <h3>Número de deputados senadores: -</h3>
+                <h3>Número de vereadores na Câmara Municipal de São Paulo: -</h3>
                 <h3>Situação: {result.fields.Situacao}</h3> 
             </div>
         </div>

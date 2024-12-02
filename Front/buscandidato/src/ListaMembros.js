@@ -45,7 +45,7 @@ function ListaMembros(){
             {data ? (
             <div class="card-body text-center">
               {data.map((item) => (
-                <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+                <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
               ))}
             </div>
             ) : (<></>)}

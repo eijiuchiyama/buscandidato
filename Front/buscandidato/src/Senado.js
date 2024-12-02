@@ -26,9 +26,11 @@ function Senado(){
               <img src={SenadoPicture} class="mx-auto d-block rounded" style={{width:'40vw'}}/>
             </div>
             <div class="card-body">
-                <h3>Cidade:</h3>
-                <h3>Endereço:</h3>
-                <h3>Número de membros:</h3>
+                <h3>Cidade: Brasília-DF</h3>
+                <h3>Endereço: Praça dos Três Poderes</h3>
+                <h3>CEP: 70165-900</h3>
+                <h3>Telefone: 0800 612211</h3>
+                <h3>Número de membros: 81</h3>
             </div>
             <div class="text-center d-grid gap-2">
               <Link to='/lista-membros'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
