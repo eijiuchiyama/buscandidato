@@ -1,24 +1,64 @@
 import {Header, Footer} from './App.js'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import 'bootstrap-icons/font/bootstrap-icons.css';
 import DropdownMenu from './components/DropdownMenu.js';
 import { Link, useNavigate } from "react-router-dom";
 
-const MenuIcon = () => {
-  return (<><i class="bi bi-justify" style={{ fontSize: 20 }}></i></>);
-}
-
 function Mandatos(){
+
+  const { candidato } = useParams();
+
+  const [data_mand, setData_mand] = useState([]);
+  const [loading_mand, setLoading_mand] = useState(true);
+  const [error_mand, setError_mand] = useState(null);
+  const [result_mand, setResult_mand] = useState([]);
+  const [items_drop, setItems_drop] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/mandatos/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData_mand(json);
+        setLoading_mand(false);
+      })
+      .catch((err) => {
+        setError_mand(err.message);
+        setLoading_mand(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (data_mand.length > 0 && candidato) {
+      const filteredMandates = data_mand.filter(
+        (item) => item.fields.Politico_CPF === candidato
+      );
+
+      const dropdownItems = filteredMandates.map((item, index) => (
+        <Link key={index} to={`/mandato/${item.pk}`} style={{ color: "#000000", textDecoration: "none", display: "block", width: "100%" }}>
+          {`${item.fields.Inicio_Mandato} - ${item.fields.Fim_Mandato}`}
+        </Link>
+      ));
+
+      setItems_drop(dropdownItems);
+    }
+  }, [data_mand, candidato]);
+
   return(
     <>
-      <div class="d-flex justify-content-center align-items-center" style={{width: "300px"}}>
-        <DropdownMenu optionsList={[
-        <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Mandato 1</Link></div>
-        ]}> <h7>Mandatos</h7> </DropdownMenu>
-      </div>
+     {items_drop.length > 0 ? (
+        <div className="d-flex justify-content-center align-items-center" style={{ width: "300px" }}>
+          <DropdownMenu optionsList = {items_drop}>
+            <span>Mandatos</span>
+          </DropdownMenu>
+        </div>
+      ):(<></>)}
     </>
-  )
+  );
 }
 
 function Candidato(){
