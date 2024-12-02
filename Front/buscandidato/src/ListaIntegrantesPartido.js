@@ -2,15 +2,19 @@ import {Header, Footer} from './App.js'
 import ListEntry from './components/ListEntry.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-function ListaMembros(){
+function ListaIntegrantesPartido(){
+
+    const { partido } = useParams();
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    fetch('/api/integrante_partido/') // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -27,6 +31,15 @@ function ListaMembros(){
       });
   }, []);
 
+  useEffect(() => {
+    // Buscar o item após os dados estarem carregados
+    if (data.length > 0 && partido) {
+      
+      const found = data.filter((item) => { return item.fields.Sigla_Partido === partido; });
+      setResult(found);
+    }
+  }, [data, partido]);
+
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
 
@@ -40,13 +53,13 @@ function ListaMembros(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded mb-5">
-                <h3>Câmara dos Deputados</h3>
-                <h1>Lista de todos os Membros</h1>
+                <h3>{partido}</h3>
+                <h1>Lista de integrantes do partido</h1>
             </div>
-            {data ? (
+            {result ? (
             <div class="card-body text-center">
-              {data.map((item) => (
-                <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+              {result.map((item) => (
+                <Link to={`/candidato/${item.fields.Politico_CPF}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Politico_CPF}/></Link>
               ))}
             </div>
             ) : (<></>)}
@@ -57,4 +70,4 @@ function ListaMembros(){
   );
 }
 
-export default ListaMembros;
+export default ListaIntegrantesPartido;

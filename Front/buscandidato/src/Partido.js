@@ -2,6 +2,8 @@ import {Header, Footer} from './App.js'
 import icone from './iconefoto.png';
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from "react-router-dom";
 
 function Partido(){
   const { partido } = useParams();
@@ -65,6 +67,7 @@ function Partido(){
                 <h3>Número de vereadores na Câmara Municipal de São Paulo: -</h3>
                 <h3>Situação: {result.fields.Situacao}</h3> 
             </div>
+            <Link to={`/lista-integrantes-partido/${result.pk}`}><Button>Lista de integrantes</Button></Link>
         </div>
         ) : (<></>) }
         <Footer/>

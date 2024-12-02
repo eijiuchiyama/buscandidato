@@ -22,6 +22,7 @@ import ListaProposicoes from './ListaProposicoes';
 import ListaVotacoes from './ListaVotacoes'
 import ListaMembros from './ListaMembros'
 import VotacoesProposicao from './VotacoesProposicao';
+import ListaIntegrantesPartido from './ListaIntegrantesPartido';
 
 function Rotas() {
   return (
@@ -31,6 +32,7 @@ function Rotas() {
         <Route path="/candidato/:candidato" component={Candidato} element={<Candidato />} />
         <Route path="/mandato" element={<Mandato />} />
         <Route path="/partido/:partido" component={Partido} element={<Partido />} />
+        <Route path="/lista-integrantes-partido/:partido" component={Partido} element={<ListaIntegrantesPartido />} />
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
