@@ -39,7 +39,7 @@ function Mandatos(){
       );
 
       const dropdownItems = filteredMandates.map((item, index) => (
-        <Link key={index} to={`/mandato/${item.pk}`} style={{ color: "#000000", textDecoration: "none", display: "block", width: "100%" }}>
+        <Link key={index} to={`/mandato/${candidato}/${item.pk}`} style={{ color: "#000000", textDecoration: "none", display: "block", width: "100%" }}>
           {`${item.fields.Inicio_Mandato} - ${item.fields.Fim_Mandato}`}
         </Link>
       ));

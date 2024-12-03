@@ -1,6 +1,8 @@
 import {Header, Footer} from './App.js'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from "react-router-dom";
 
 function Orgao(){
 
@@ -78,6 +80,7 @@ function Orgao(){
               <h3>Data de início: {result.fields.Data_Inicio}</h3>
               <h3>Data de fim: {getDataFim()}</h3>
           </div>
+          <Link to={`/lista-integrantes-orgao/${result.fields.Nome}/${result.pk}`}><Button>Lista de integrantes</Button></Link>
       </div>
       ) : (<></>)}
       <Footer/>

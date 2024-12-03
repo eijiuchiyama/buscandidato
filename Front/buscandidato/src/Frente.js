@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { Worker, Viewer } from '@react-pdf-viewer/core';
 import '@react-pdf-viewer/core/lib/styles/index.css';
-
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from "react-router-dom";
 
 function Frente(){
 
@@ -69,6 +70,7 @@ function Frente(){
                 <Viewer fileUrl={result.fields.PDF_Frente} />
             </Worker>
         </div>
+        <Link to={`/lista-integrantes-frente/${result.fields.Nome}/${result.pk}`}><Button>Lista de integrantes</Button></Link>
       </div>
       ) : (<></>)}
       <Footer/>
