@@ -15,14 +15,6 @@ function Atualizacoes(){
             </div>
             <div>
               <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
-              <h3>Atualização</h3>
             </div>
         </div>
         <Footer />
