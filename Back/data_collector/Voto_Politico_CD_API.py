@@ -5,8 +5,7 @@ import time
 import django
 import requests
 
-import data_import.Votacao_Importer as VotacaoImporter
-import data_import.Votacao_Proposicao_Importer as RelacaoImporter
+import data_import.Voto_Politico_Importer as VotoImporter
 
 # Access the directory two above the script
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -17,6 +16,14 @@ django.setup()
 
 # Access the Database
 import buscandidatoapp.models as models
+
+# Function to get URL of next page of API
+def nextPage(Links):
+    for entry in Links:
+        if entry["rel"] == "next":
+            return entry["href"]
+    
+    return None
 
 # Function to check if a text is in json format
 def is_json(text):
@@ -40,25 +47,20 @@ def get_json(url):
             time.sleep(0.5)
 
 # Make requests to API
-URL_RELACAO = "https://dadosabertos.camara.leg.br/api/v2/proposicoes/<id>/votacoes?ordem=DESC&ordenarPor=dataHoraRegistro"
-URL_VOTACAO = "https://dadosabertos.camara.leg.br/api/v2/votacoes/<id>"
+URL_VOTACAO = "https://dadosabertos.camara.leg.br/api/v2/votacoes/<id>/votos"
 start = 0
 
-for number, proposicao in enumerate(models.Proposicao.objects.all()[start:]):
-    id = proposicao.ID_Camara_Proposicao
+for number, votacao in enumerate(models.Votacao.objects.all()[start:]):
+    id = votacao.ID_Camara_Votacao
 
     print(number + start, id)
 
-    link_relacao_data = URL_RELACAO.replace("<id>", str(id))
-    Relacao_data = get_json(link_relacao_data)
-    if Relacao_data:
-        for entry in Relacao_data["dados"]:
-            votacao_id = entry["id"]
+    link_votacao_data = URL_VOTACAO.replace("<id>", str(id))
 
-            link_votacao_data = URL_VOTACAO.replace("<id>", str(votacao_id))
-            Votacao_data = get_json(link_votacao_data)
-            if Votacao_data:
-                VotacaoImporter.import_Votacao(Votacao_data["dados"])
-
-                votacao = VotacaoImporter.get_Votacao_by_ID(votacao_id)
-                RelacaoImporter.import_Relacao(proposicao, votacao)
+    while link_votacao_data != None:
+        page = get_json(link_votacao_data)
+        if page:
+            for entry in page["dados"]:
+                VotoImporter.import_Voto(votacao, entry)
+        
+        link_votacao_data = nextPage(page["links"])

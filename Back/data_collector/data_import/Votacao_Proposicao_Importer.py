@@ -24,6 +24,6 @@ def import_Relacao(proposicao, votacao):
     
     if not votacao_proposicao_exists(relacao):
         relacao.save()
-        print("Relation Proposicao " + proposicao.ID_Camara_Proposicao + " e Votacao " + votacao.ID_Camara_Votacao + " included.")
+        print("Relation Proposicao " + str(proposicao.ID_Camara_Proposicao) + " e Votacao " + votacao.ID_Camara_Votacao + " included.")
     else:
-        print("Relation Proposicao " + proposicao.ID_Camara_Proposicao + " e Votacao " + votacao.ID_Camara_Votacao + " already included.")
+        print("Relation Proposicao " + str(proposicao.ID_Camara_Proposicao) + " e Votacao " + votacao.ID_Camara_Votacao + " already included.")

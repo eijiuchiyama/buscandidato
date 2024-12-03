@@ -44,7 +44,7 @@ class Orgao(models.Model):
     Tipo = models.CharField(max_length=255, blank=True, null=True)
 
 class Votacao(models.Model):
-    ID_Camara_Votacao = models.IntegerField(primary_key=True)
+    ID_Camara_Votacao = models.CharField(max_length=255, primary_key=True)
     Sigla_Orgao = models.ForeignKey(Orgao, blank=True, null=True, on_delete=models.CASCADE)
     Resultado = models.CharField(max_length=255, blank=True, null=True)
     Data = models.DateField(blank=True, null=True)
