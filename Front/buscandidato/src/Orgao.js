@@ -80,7 +80,7 @@ function Orgao(){
               <h3>Data de início: {result.fields.Data_Inicio}</h3>
               <h3>Data de fim: {getDataFim()}</h3>
           </div>
-          <Link to={`/lista-integrantes-orgao/${result.pk}`}><Button>Lista de integrantes</Button></Link>
+          <Link to={`/lista-integrantes-orgao/${result.fields.Nome}/${result.pk}`}><Button>Lista de integrantes</Button></Link>
       </div>
       ) : (<></>)}
       <Footer/>

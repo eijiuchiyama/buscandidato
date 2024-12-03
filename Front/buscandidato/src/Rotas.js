@@ -35,8 +35,8 @@ function Rotas() {
         <Route path="/mandato/:candidato/:mandato" element={<Mandato />} />
         <Route path="/partido/:partido" component={Partido} element={<Partido />} />
         <Route path="/lista-integrantes-partido/:partido" component={Partido} element={<ListaIntegrantesPartido />} />
-        <Route path="/lista-integrantes-frente/:frente" component={Frente} element={<ListaIntegrantesFrente />} />
-        <Route path="/lista-integrantes-orgao/:orgao" component={Orgao} element={<ListaIntegrantesOrgao />} />
+        <Route path="/lista-integrantes-frente/:frente_nome/:frente_id" element={<ListaIntegrantesFrente />} />
+        <Route path="/lista-integrantes-orgao/:orgao_nome/:orgao_sigla" element={<ListaIntegrantesOrgao />} />
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />

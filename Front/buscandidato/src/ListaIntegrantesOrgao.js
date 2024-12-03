@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-function ListaIntegrantesPartido(){
+function ListaIntegrantesOrgao(){
 
-    const { partido } = useParams();
+    const { orgao_nome, orgao_sigla } = useParams();
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -14,7 +14,7 @@ function ListaIntegrantesPartido(){
     const [result, setResult] = useState([]);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    fetch('/api/integrante_orgao/') // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -33,12 +33,12 @@ function ListaIntegrantesPartido(){
 
   useEffect(() => {
     // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && partido) {
-      const found = data.filter((item) => { return item.fields.Partido_Atual === partido; });
+    if (data.length > 0 && orgao_sigla) {
+      const found = data.filter((item) => { return item.fields.Sigla_Orgao === orgao_sigla; });
       setResult(found);
       console.log(result);
     }
-  }, [data, partido]);
+  }, [data, orgao_sigla]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -53,13 +53,13 @@ function ListaIntegrantesPartido(){
         <Header />
         <div class="card p-3">
             <div class="card-header text-center rounded mb-5">
-                <h3>{partido}</h3>
-                <h1>Lista de integrantes do órgão</h1>
+                <h3>{orgao_nome.toUpperCase()}</h3>
+                <h1>Lista de integrantes do Órgão</h1>
             </div>
             {result ? (
             <div class="card-body text-center">
               {result.map((item) => (
-                <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
+                <Link to={`/candidato/${item.fields.Politico_CPF}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Politico_CPF}/></Link>
               ))}
             </div>
             ) : (<></>)}
@@ -70,4 +70,4 @@ function ListaIntegrantesPartido(){
   );
 }
 
-export default ListaIntegrantesPartido;
+export default ListaIntegrantesOrgao;
