@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Cartao = ({ tipo, numero, ano, ementa, pk }) =>(
-    <div className="col-md-auto">
+    <div className="col-md-auto mb-2 mt-2">
         <div className="card" style={{width: '18rem'}}>
             <div className="card-body">
                 <h5 className="card-title">{`${tipo} ${numero} / ${ano}`}</h5>
@@ -50,13 +50,13 @@ function Proposicoes(){
       <body className="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div className="card p-3">
-            <div className="card-header text-center rounded" style={{backgroundColor: '#ff5555'}}>
+            <div className="card-header text-center rounded" style={{backgroundColor: '#5555ff'}}>
                 <h2>Câmara dos Deputados</h2>
                 <h1>Lista de Proposições</h1>
             </div>
             {data ? (
             <div className="container text-center">
-                <div className="row justify-content-md-center">
+                <div className="row justify-content-md-center mb-2 mt-2">
                     {data.map((item) => (
                     <Cartao key={item.pk} tipo={item.fields.Tipo} numero={item.fields.Numero} ano={item.fields.Ano_Apresentacao} ementa={item.fields.Ementa} pk={item.pk} />
                     ))}
