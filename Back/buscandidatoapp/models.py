@@ -32,6 +32,7 @@ class Partido(models.Model):
     Qty_Membros_Camara = models.IntegerField(blank=True, null=True)
     ID_Camara_Partido = models.IntegerField(blank=True, null=True)
     Situacao = models.CharField(max_length=255, blank=True, null=True)
+    Logo = models.URLField(max_length=255, blank=True, null=True)
 
 class Orgao(models.Model):
     Sigla_Orgao = models.CharField(max_length=31, primary_key=True)
