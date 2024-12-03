@@ -37,7 +37,6 @@ function CamaraMunicipal(){
               <Link to='/frentes'><Button style={{width:"50%"}}>Frentes</Button></Link>
               <Link to='/orgaos'><Button style={{width:"50%"}}>Órgãos</Button></Link>
               <Link to='/proposicoes'><Button style={{width:"50%"}}>Proposições</Button></Link>
-              <Link to='/votacoes'><Button style={{width:"50%"}}>Votações</Button></Link>
             </div>
         </div>
         <Footer/>
@@ -68,7 +67,6 @@ function CamaraMunicipal(){
                 <Link to='/frentes'><Button style={{width:"80%"}}>Frentes</Button></Link>
                 <Link to='/orgaos'><Button style={{width:"80%"}}>Órgãos</Button></Link>
                 <Link to='/proposicoes'><Button style={{width:"80%"}}>Proposições</Button></Link>
-                <Link to='/votacoes'><Button style={{width:"80%"}}>Votações</Button></Link>
               </div>
           </div>
           <Footer/>

@@ -78,8 +78,8 @@ function SearchBarContent(){
       </div>}
       {isMobile &&
       <div class="container">
-        <div class="row">
-          <div class="col-6" style={{minWidth: '120px', maxWidth:'120px'}}>
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="mb-3" style={{minWidth: '100px', maxWidth:'100px'}}>
             <DropdownMenu optionsList={[
               <div onClick={clickCandidato}>Candidato</div>, 
               <div onClick={clickPartido}>Partido</div>,
@@ -87,11 +87,11 @@ function SearchBarContent(){
               <h7>{tagText}</h7>
             </DropdownMenu>
           </div>
-          <div class="col-6">
-            <Form.Control onKeyDown={handleKeyDown} onChange={(e) => setValorPesquisa(e.target.value)}
-              placeholder="Procure por um candidato ou político"
-            />
-          </div>
+        </div>
+        <div>
+          <Form.Control onKeyDown={handleKeyDown} onChange={(e) => setValorPesquisa(e.target.value)}
+            placeholder="Procure por um candidato ou político"
+          />
         </div>
       </div>}
     </>

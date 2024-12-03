@@ -1,24 +1,46 @@
 import {Header, Footer} from './App.js'
-import CamaraDeputadosPicture from './assets/CamaraDeputadosPicture.webp';
-import Button from 'react-bootstrap/Button';
-import proposicoes from './Proposicoes.json';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const Cartao = ({ numero, autor, ementa }) =>(
+const Cartao = ({ tipo, numero, ano, ementa, pk }) =>(
     <div className="col-md-auto">
-        {/* cartao do candidato*/}
         <div className="card" style={{width: '18rem'}}>
             <div className="card-body">
-                <h5 className="card-title">{numero}</h5>
-                <h6 className="card-subtitle mb-2 text-body-secondary">Autor: {autor}</h6>
+                <h5 className="card-title">{`${tipo} ${numero} / ${ano}`}</h5>
                     <p class="card-text">Ementa: {ementa}</p>
-                <a href="#" className="card-link">Ver mais</a>
+                <Link to={`/proposicao/${pk}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
             </div>
         </div>
     </div>
 );
 
 function Proposicoes(){
+
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch('/api/proposicoes/') // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData(json);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
+
     return(
     <html>
       <head>
@@ -30,21 +52,17 @@ function Proposicoes(){
         <div className="card p-3">
             <div className="card-header text-center rounded" style={{backgroundColor: '#ff5555'}}>
                 <h2>Câmara dos Deputados</h2>
-                <h1>Lista de Frentes Parlamentares</h1>
+                <h1>Lista de Proposições</h1>
             </div>
-
-            {/* container dinamico dos candidatos */}
+            {data ? (
             <div className="container text-center">
                 <div className="row justify-content-md-center">
-                    {proposicoes.map((item) => (
-                    <Cartao key={item.id} numero={item.numero} autor={item.autor} ementa={item.ementa} />
+                    {data.map((item) => (
+                    <Cartao key={item.pk} tipo={item.fields.Tipo} numero={item.fields.Numero} ano={item.fields.Ano_Apresentacao} ementa={item.fields.Ementa} pk={item.pk} />
                     ))}
                 </div>
             </div>
-            <div className="text-center d-grid gap-2">
-              <Button>Lista de membros</Button>
-              <Button>Frentes</Button>
-            </div>
+            ) : (<></>) }
         </div>
         <Footer/>
       </body>

@@ -18,8 +18,7 @@ import ListaPartidos from './ListaPartidos';
 import ListaPoliticos from './ListaPoliticos';
 import ListaFrentes from './ListaFrentes';
 import ListaOrgaos from './ListaOrgaos'
-import ListaProposicoes from './ListaProposicoes';
-import ListaVotacoes from './ListaVotacoes'
+import ListaProposicoes from './Proposicoes';
 import ListaMembros from './ListaMembros'
 import VotacoesProposicao from './VotacoesProposicao';
 import ListaIntegrantesPartido from './ListaIntegrantesPartido';
@@ -43,7 +42,6 @@ function Rotas() {
         <Route path="/lista-frentes" element={<ListaFrentes />} />
         <Route path="/lista-orgaos" element={<ListaOrgaos />} />
         <Route path="/lista-proposicoes" element={<ListaProposicoes />} />
-        <Route path="/lista-votacoes" element={<ListaVotacoes />} />
         <Route path="/lista-membros" element={<ListaMembros />} />
         <Route path="/frente/:frente" component={Frente} element={<Frente />} />
         <Route path="/orgao/:orgao" component={Orgao} element={<Orgao />} />
