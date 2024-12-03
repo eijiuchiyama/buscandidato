@@ -1,8 +1,29 @@
 import {Header, Footer} from './App.js'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
-import ListEntry from './components/ListEntry.js'
 import { Link } from 'react-router-dom';
+
+const CartaoPartido = ({ nome }) =>(
+  <div className="col-md-auto mb-2 mt-2">
+      <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+              <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
+              <Link to={`/proposicao/${nome}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+          </div>
+      </div>
+  </div>
+);
+
+const CartaoPolitico = ({ nome, pk }) =>(
+  <div className="col-md-auto mb-2 mt-2">
+      <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+              <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
+              <Link to={`/proposicao/${pk}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+          </div>
+      </div>
+  </div>
+);
 
 function Resultado(){
 
@@ -121,39 +142,39 @@ function Resultado(){
   };
 
   return(
-  <html>
-    <head>
-    <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    </head>
-    <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
-      <Header />
-      <div class="card p-3">
+    <html>
+      <head>
+      <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      </head>
+      <body className="container p-3" style={{backgroundColor: '#d8d8d8'}}>
+        <Header />
+        <div className="card p-3">
           <div class="card-header text-center rounded mb-5">
               {renderTitle()}
           </div>
           {dataPartidos ? (
-          <div class="card-body text-center">
-            {dataPartidos.map((item) => (
-              <Link to={`/partido/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}>
-                <ListEntry text={item.fields.Nome.toUpperCase()}/>
-              </Link>
-            ))}
+          <div className="container text-center">
+              <div className="row justify-content-md-center mb-2 mt-2">
+                {dataPartidos.map((item) => (
+                <CartaoPartido key={item.pk} nome={item.fields.Nome} />
+                ))}
+              </div>
           </div>
-          ) : (<></>)}
+          ) : (<></>) }
           {dataPoliticos ? (
-          <div class="card-body text-center">
-            {dataPoliticos.map((item) => (
-              <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}>
-                <ListEntry text={item.fields.Nome.toUpperCase()}/>
-              </Link>
-            ))}
+          <div className="container text-center">
+              <div className="row justify-content-md-center mb-2 mt-2">
+                {dataPoliticos.map((item) => (
+                <CartaoPolitico key={item.pk} nome={item.fields.Nome} pk={item.pk} />
+                ))}
+              </div>
           </div>
-          ) : (<></>)}
-      </div>
-      <Footer/>
-    </body>
-  </html>
+          ) : (<></>) }
+        </div>
+        <Footer/>
+      </body>
+    </html>
   );
 
 }
