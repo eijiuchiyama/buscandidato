@@ -144,7 +144,7 @@ function Resultado(){
           {dataPoliticos ? (
           <div class="card-body text-center">
             {dataPoliticos.map((item) => (
-              <Link to={`/candidato/${item.fields.Nome}`} style={{color:"black", textDecoration: "none"}}>
+              <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}>
                 <ListEntry text={item.fields.Nome.toUpperCase()}/>
               </Link>
             ))}
