@@ -14,16 +14,16 @@ import Mandato from './Mandato';
 import ResultadoPesquisa from './ResultadoPesquisa';
 import Atualizacoes from './Atualizacoes';
 import SobreSite from './SobreSite';
+import MembrosCamara from './MembrosCamara';
 import ListaPartidos from './ListaPartidos';
 import ListaPoliticos from './ListaPoliticos';
 import ListaFrentes from './ListaFrentes';
 import ListaOrgaos from './ListaOrgaos'
-import ListaProposicoes from './Proposicoes';
+import ListaProposicoes from './ListaProposicoes';
+import ListaVotacoes from './ListaVotacoes'
 import ListaMembros from './ListaMembros'
 import VotacoesProposicao from './VotacoesProposicao';
 import ListaIntegrantesPartido from './ListaIntegrantesPartido';
-import ListaIntegrantesFrente from './ListaIntegrantesFrente';
-import ListaIntegrantesOrgao from './ListaIntegrantesOrgao';
 
 function Rotas() {
   return (
@@ -31,18 +31,18 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/candidato/:candidato" component={Candidato} element={<Candidato />} />
-        <Route path="/mandato/:candidato/:mandato" element={<Mandato />} />
+        <Route path="/mandato/:mandato" component={Mandato} element={<Mandato />} />
         <Route path="/partido/:partido" component={Partido} element={<Partido />} />
         <Route path="/lista-integrantes-partido/:partido" component={Partido} element={<ListaIntegrantesPartido />} />
-        <Route path="/lista-integrantes-frente/:frente_nome/:frente_id" element={<ListaIntegrantesFrente />} />
-        <Route path="/lista-integrantes-orgao/:orgao_nome/:orgao_sigla" element={<ListaIntegrantesOrgao />} />
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
         <Route path="/lista-frentes" element={<ListaFrentes />} />
         <Route path="/lista-orgaos" element={<ListaOrgaos />} />
         <Route path="/lista-proposicoes" element={<ListaProposicoes />} />
+        <Route path="/lista-votacoes" element={<ListaVotacoes />} />
         <Route path="/lista-membros" element={<ListaMembros />} />
+        <Route path="/membros-camara" element={<MembrosCamara />} />
         <Route path="/frente/:frente" component={Frente} element={<Frente />} />
         <Route path="/orgao/:orgao" component={Orgao} element={<Orgao />} />
         <Route path="/proposicao/:proposicao" component={Proposicao} element={<Proposicao />} />
