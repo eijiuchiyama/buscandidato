@@ -11,10 +11,10 @@ function ListaIntegrantesPartido(){
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState([]);
 
   useEffect(() => {
-    fetch('/api/integrante_partido/') // URL da sua API
+    fetch('/api/politicos/') // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -34,9 +34,9 @@ function ListaIntegrantesPartido(){
   useEffect(() => {
     // Buscar o item após os dados estarem carregados
     if (data.length > 0 && partido) {
-      
-      const found = data.filter((item) => { return item.fields.Sigla_Partido === partido; });
+      const found = data.filter((item) => { return item.fields.Partido_Atual === partido; });
       setResult(found);
+      console.log(result);
     }
   }, [data, partido]);
 
@@ -59,7 +59,7 @@ function ListaIntegrantesPartido(){
             {result ? (
             <div class="card-body text-center">
               {result.map((item) => (
-                <Link to={`/candidato/${item.fields.Politico_CPF}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Politico_CPF}/></Link>
+                <Link to={`/candidato/${item.pk}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Nome.toUpperCase()}/></Link>
               ))}
             </div>
             ) : (<></>)}
