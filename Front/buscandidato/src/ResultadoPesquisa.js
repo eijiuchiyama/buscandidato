@@ -8,7 +8,7 @@ const CartaoPartido = ({ nome }) =>(
       <div className="card" style={{width: '18rem'}}>
           <div className="card-body">
               <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
-              <Link to={`/proposicao/${nome}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+              <Link to={`/partido/${nome}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
           </div>
       </div>
   </div>
@@ -19,7 +19,7 @@ const CartaoPolitico = ({ nome, pk }) =>(
       <div className="card" style={{width: '18rem'}}>
           <div className="card-body">
               <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
-              <Link to={`/proposicao/${pk}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+              <Link to={`/candidato/${pk}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
           </div>
       </div>
   </div>

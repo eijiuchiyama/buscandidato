@@ -69,7 +69,7 @@ function ListaIntegrantesOrgao(){
             {result ? (
             <div className="container text-center">
                 <div className="row justify-content-md-center mb-2 mt-2">
-                    {data.map((item) => (
+                    {result.map((item) => (
                     <Cartao key={item.pk} cpf={item.fields.Politico_CPF} />
                     ))}
                 </div>
