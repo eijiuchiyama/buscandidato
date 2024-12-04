@@ -177,18 +177,16 @@ export function Header(){
       </div>}
       {isMobile && 
       <div class="container">
-        <div class="row mt-4 mb-4">
-          <div class="col-9 m-2">
-            <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
-          </div>
-          <div class="col" style={{minWidth: '80px', maxWidth:'80px'}}>
-            <DropdownMenu optionsList={[
-              <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
-              <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
-              <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
-              <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
-              <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
-          </div>
+        <div>
+          <DropdownMenu optionsList={[
+            <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
+            <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+            <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+            <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
+            <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
+        </div>
+        <div class="m-2">
+          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
       </div>}
     </>
