@@ -151,6 +151,7 @@ function Resultado(){
         <Header />
         <div className="card p-3">
           <div class="card-header text-center rounded mb-5">
+              <h2>{`Sua pesquisa: "${nome}"`}</h2>
               {renderTitle()}
           </div>
           {dataPartidos ? (

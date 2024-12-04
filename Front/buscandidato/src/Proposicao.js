@@ -9,10 +9,9 @@ function Proposicao(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/proposicoes/') // URL da sua API
+    fetch(`/api/proposicoes/?id=${proposicao}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -27,16 +26,7 @@ function Proposicao(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && proposicao) {
-      
-      const found = data.find((item) => {return item.pk == proposicao; });
-      setResult(found);
-    }
-  }, [data, proposicao]);
+  }, [proposicao]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -50,18 +40,17 @@ function Proposicao(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {result ? (
+        {data ? (
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
             <div class="text-center mb-5">
                 <h3>Câmara dos Deputados</h3>
-                <h1>{`${result.fields.Tipo} ${result.fields.Numero}/${result.fields.Ano_Apresentacao}`}</h1>
+                <h1>{`${data[0].fields.Tipo} ${data[0].fields.Numero}/${data[0].fields.Ano_Apresentacao}`}</h1>
             </div>
             <div>
-                <h3>Data de Apresentacao: {result.fields.Data_Apresentacao}</h3>
-                <h3>Autores:</h3>
-                <h3>Ementa: {result.fields.Ementa}</h3>
-                <h3>Temas: {result.fields.Keywords}</h3>
-                <h3>Situação: {result.fields.Situacao}</h3>
+                <h3>Data de Apresentacao: {data[0].fields.Data_Apresentacao}</h3>
+                <h3>Ementa: {data[0].fields.Ementa}</h3>
+                <h3>Temas: {data[0].fields.Keywords}</h3>
+                <h3>Situação: {data[0].fields.Situacao}</h3>
             </div>
         </div>
         ) : (<></>) }

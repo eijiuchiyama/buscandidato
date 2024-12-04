@@ -21,10 +21,9 @@ function ListaIntegrantesOrgao(){
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [result, setResult] = useState([]);
 
   useEffect(() => {
-    fetch('/api/integrante_orgao/') // URL da sua API
+    fetch(`/api/integrante_orgao/?orgaoSigla=${orgao_sigla}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -40,15 +39,6 @@ function ListaIntegrantesOrgao(){
         setLoading(false);
       });
   }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && orgao_sigla) {
-      const found = data.filter((item) => { return item.fields.Sigla_Orgao === orgao_sigla; });
-      setResult(found);
-      console.log(result);
-    }
-  }, [data, orgao_sigla]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -66,10 +56,10 @@ function ListaIntegrantesOrgao(){
                 <h2>{orgao_nome.toUpperCase()}</h2>
                 <h1>Lista de integrantes do Órgão</h1>
             </div>
-            {result ? (
+            {data ? (
             <div className="container text-center">
                 <div className="row justify-content-md-center mb-2 mt-2">
-                    {result.map((item) => (
+                    {data.map((item) => (
                     <Cartao key={item.pk} cpf={item.fields.Politico_CPF} />
                     ))}
                 </div>

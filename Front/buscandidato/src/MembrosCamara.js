@@ -16,7 +16,7 @@ const Cartao = ({ cpf, nome, partido, foto }) =>(
                 <div className="col-md-8">
                     <div className="card-body">
                         <h4 className="card-title">
-                            <Link to={`/candidato/${cpf}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={nome}/></Link>
+                            <Link to={`/candidato/${cpf}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={nome.toUpperCase()}/></Link>
                         </h4>
                         <h5 className="card-text">{partido}</h5>
                     </div>
