@@ -18,11 +18,11 @@ function DropdownMenu({children, optionsList}) {
 function DropdownItems(optionsList) {
   return(
     <>
-      <Dropdown.Menu>
+      <Dropdown.Menu style={{ width: "100%"}}>
         {optionsList.optionsList.map(function(option){
-          return (<>
+          return (<div>
               <Dropdown.Item>{option}</Dropdown.Item>
-            </>);
+            </div>);
         })}
       </Dropdown.Menu>
     </>

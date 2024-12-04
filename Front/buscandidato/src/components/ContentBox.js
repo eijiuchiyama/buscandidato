@@ -3,7 +3,7 @@ function ContentBox({ children, header }) {
     <>
       <div >
         <h1 class="text-center"> {header} </h1>
-        <div class="bg-black rounded m-3 p-5"> {children} </div> 
+        <div class="bg-gray-dark rounded m-3 p-5"> {children} </div> 
       </div>
     </>
   );
