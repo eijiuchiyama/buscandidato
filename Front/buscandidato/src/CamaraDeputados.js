@@ -33,10 +33,11 @@ function CamaraDeputados(){
                 <h3>Número de membros: 513</h3>
             </div>
             <div class="text-center d-grid gap-2">
-              <Link to='/lista-membros'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
+              <Link to='/membros-camara'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
               <Link to='/lista-frentes'><Button style={{width:"50%"}}>Frentes</Button></Link>
               <Link to='/lista-orgaos'><Button style={{width:"50%"}}>Órgãos</Button></Link>
               <Link to='/lista-proposicoes'><Button style={{width:"50%"}}>Proposições</Button></Link>
+              <Link to='/lista-votacoes'><Button style={{width:"50%"}}>Votações</Button></Link>
             </div>
         </div>
         <Footer/>
@@ -67,6 +68,7 @@ function CamaraDeputados(){
               <Link to='/lista-frentes'><Button style={{width:"80%"}}>Frentes</Button></Link>
               <Link to='/lista-orgaos'><Button style={{width:"80%"}}>Órgãos</Button></Link>
               <Link to='/lista-proposicoes'><Button style={{width:"80%"}}>Proposições</Button></Link>
+              <Link to='/lista-votacoes'><Button style={{width:"80%"}}>Votações</Button></Link>
             </div>
         </div>
         <Footer/>

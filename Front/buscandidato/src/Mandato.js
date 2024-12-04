@@ -1,87 +1,115 @@
-import {Header, Footer} from './App.js';
-import Tabs from './components/Tabs.js';
-import React, { useEffect, useState } from 'react';
+import {Header} from './App.js'
 import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import Tabs from './components/Tabs.js'; // Componente de abas (implemente se ainda não existir)
 
-function Mandato(){
-
-    const { candidato, mandato } = useParams();
-
-    const [data, setData] = useState([]);
+function Mandato() {
+  const { mandato } = useParams(); // Número do mandato vindo da URL
+  const [PoliticoCpf, setPoliticoCpf] = useState(null);
+  const [politicoNome, setPoliticoNome] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
-
-  const [data_mand, setData_mand] = useState([]);
-  const [loading_mand, setLoading_mand] = useState(true);
-  const [error_mand, setError_mand] = useState(null);
-  const [result_mand, setResult_mand] = useState(null);
+  const [despesas, setDespesas] = useState([]);
+  const [proposicoes, setProposicoes] = useState([]);
+  const [frentes, setFrentes] = useState([]);
+  const [votacoes, setVotacoes] = useState([]);
+  const [estado, setEstado] = useState([]);
+  const [inicio, setInicio] = useState([]);
+  const [fim, setFim] = useState([]);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    // Busca o mandato e obtém o CPF do político
+    fetch(`/api/mandatos?pk=${mandato}`)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erro: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Erro ao buscar mandato: ${response.status}`);
         return response.json();
       })
-      .then((json) => {
-        setData(json);
+      .then((data) => {
+        const mandatoEncontrado = data.find((item) => item.pk === parseInt(mandato, 10));
+        if (mandatoEncontrado) {
+          const cpf = mandatoEncontrado.fields.Politico_CPF;
+          setPoliticoCpf(cpf);
+          const estadoMandato = mandatoEncontrado.fields.Estado;
+          setEstado(estadoMandato);
+          const inicioMandato = mandatoEncontrado.fields.Inicio_Mandato;
+          setInicio(inicioMandato);
+          const fimMandato = mandatoEncontrado.fields.Fim_Mandato;
+          setFim(fimMandato);
+
+          fetch(`/api/politicos`)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`Erro ao buscar políticos: ${res.status}`);
+            }
+            return res.json();
+          })
+          .then((politicos) => {
+    // Filtrar político pelo CPF
+            const politico = politicos.find((p) => p.pk === cpf);
+            if (politico?.fields?.Nome) {
+              setPoliticoNome(politico.fields.Nome); // Define o nome do político
+            } else {
+              throw new Error('Nenhum político encontrado com o CPF especificado.');
+            }
+          })
+          .catch((err) => console.error('Erro ao buscar político:', err));
+
+
+
+          // Chama as APIs relacionadas usando o CPF
+
+          fetch(`/api/autor_proposicao?cpf=${cpf}`)
+            .then((res) => res.json())
+            .then(setProposicoes)
+            .catch((err) => console.error('Erro ao buscar proposições:', err));
+
+          fetch('/api/frentes')
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error(`Erro ao buscar frentes: ${res.status}`);
+            }
+            return res.json();
+          })
+          .then((frentes) => {
+            const frentesCoordenadas = frentes.filter(
+              (frente) => frente.fields.CPF_Coordenador === PoliticoCpf
+            );
+            if (frentesCoordenadas.length > 0) {
+              console.log('Frentes coordenadas pelo político:', frentesCoordenadas);
+            } else {
+              console.log('Nenhuma frente encontrada para o coordenador com o CPF:', PoliticoCpf);
+            }
+          })
+          .catch((err) => console.error('Erro ao buscar frentes:', err));
+
+
+          fetch(`/api/votacao_proposicao?cpf=${cpf}`)
+            .then((res) => res.json())
+            .then(setVotacoes)
+            .catch((err) => console.error('Erro ao buscar votações:', err));
+        } else {
+          throw new Error('Nenhum mandato encontrado para o número fornecido.');
+        }
         setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [mandato]);
 
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && candidato) {
-      
-      const found = data.find((item) => { return item.pk === candidato });
-      setResult(found);
-    }
-  }, [data, candidato]);
+  if (loading) return <p>Carregando...</p>;
+  if (error) return <p>Erro: {error}</p>;
 
-  useEffect(() => {
-    fetch('/api/mandatos/') // URL da sua API
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`Erro: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((json) => {
-        setData_mand(json);
-        setLoading_mand(false);
-      })
-      .catch((err) => {
-        setError_mand(err.message);
-        setLoading_mand(false);
-      });
-  }, []);
+  const tabData = [
+    { label: 'Despesas', content: 'Despesas do período' },
+    { label: 'Proposições', content: proposicoes.map((item) => <p key={item.id}>{item.titulo}</p>) },
+    { label: 'Frentes', content: frentes.map((item) => <p key={item.id}>{item.nome}</p>) },
+    { label: 'Votações', content: votacoes.map((item) => <p key={item.id}>{item.proposicao}</p>) },
+  ];
 
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data_mand.length > 0 && mandato) {
-      console.log(data_mand);
-      const found = data_mand.find((item) => { return item.pk == mandato });
-      setResult_mand(found);
-    }
-  }, [data_mand, mandato]);
 
-  if (loading || loading_mand) return <p>Carregando...</p>;
-  if (error || error_mand) return <p>Erro: {error}</p>;
-
-    const tabData = [
-        { label: 'Despesas', content: 'Aqui estão as despesas detalhadas.' },
-        { label: 'Frentes', content: 'Aqui estão as frentes que ele participou.' },
-        { label: 'Votações', content: 'Aqui estão as votações em que ele participou.' },
-        { label: 'Proposições', content: 'Aqui estão as proposições que ele propôs.' },
-    ];
-
-    return(
+  return (
         <html>
         <head>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"></link>
@@ -90,19 +118,17 @@ function Mandato(){
         </head>
         <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {result && result_mand ? (
         <div className="tabs-container">
             <div className="App">
-                <h1 className="geeks">{result.fields.Nome}</h1>
-                <h2 className="geeks">{`Mandato ${result_mand.fields.Inicio_Mandato} - ${result_mand.fields.Fim_Mandato}`}</h2>
+                <h1 className="geeks">{politicoNome}</h1>
+                <h2 className="geeks">Deputado federal por {estado}</h2>
+                <h2 className="geeks">{inicio} - {fim}</h2>
                 <Tabs tabs={tabData} />
             </div>
         </div>
-        ) : (<></>)}
-        <Footer/>
         </body>
         </html>
-    );
+  );
 }
 
 export default Mandato;

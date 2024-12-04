@@ -60,11 +60,6 @@ function Frente(){
               <h3>Câmara dos Deputados</h3>
               <h1>{result.fields.Nome.toUpperCase()}</h1>
           </div>
-          <div>
-              <h3>Coordenador:</h3>
-              <h3>E-mail:</h3>
-              <h3>Telefone:</h3>
-          </div>
           <div class="m-5 border" style={{ height: '500px', borderWidth: '5px' }}>
             <Worker workerUrl={"/pdf.worker.js"}>
                 <Viewer fileUrl={result.fields.PDF_Frente} />

@@ -1,8 +1,18 @@
 import {Header, Footer} from './App.js'
-import ListEntry from './components/ListEntry.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+
+const Cartao = ({ cpf }) =>(
+  <div className="col-md-auto mb-2 mt-2">
+      <div className="card" style={{width: '18rem'}}>
+          <div className="card-body">
+              <h5 className="card-title">{`${cpf}`}</h5>
+              <Link to={`/candidato/${cpf}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+          </div>
+      </div>
+  </div>
+);
 
 function ListaIntegrantesOrgao(){
 
@@ -49,22 +59,24 @@ function ListaIntegrantesOrgao(){
       <link href=" https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css " rel="stylesheet"></link>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
       </head>
-      <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
+      <body className="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        <div class="card p-3">
-            <div class="card-header text-center rounded mb-5">
-                <h3>{orgao_nome.toUpperCase()}</h3>
+        <div className="card p-3">
+            <div className="card-header text-center rounded" style={{backgroundColor: '#5555ff'}}>
+                <h2>{orgao_nome.toUpperCase()}</h2>
                 <h1>Lista de integrantes do Órgão</h1>
             </div>
             {result ? (
-            <div class="card-body text-center">
-              {result.map((item) => (
-                <Link to={`/candidato/${item.fields.Politico_CPF}`} style={{color:"black", textDecoration: "none"}}><ListEntry text={item.fields.Politico_CPF}/></Link>
-              ))}
+            <div className="container text-center">
+                <div className="row justify-content-md-center mb-2 mt-2">
+                    {result.map((item) => (
+                    <Cartao key={item.pk} cpf={item.fields.Politico_CPF} />
+                    ))}
+                </div>
             </div>
-            ) : (<></>)}
+            ) : (<></>) }
         </div>
-        <Footer />
+        <Footer/>
       </body>
     </html>
   );

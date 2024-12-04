@@ -1,7 +1,26 @@
 from django.shortcuts import render
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
+from django.core.paginator import Paginator
 from .models import *
+
+def pos_processo(queryset, request):
+    itens = request.GET.get('itens', None)
+    pagina = request.GET.get('pagina', None)
+    if itens:
+        itens = int(itens)
+        p = Paginator(queryset, itens)
+        if pagina:
+            pagina = int(pagina)
+            if pagina > p.num_pages or pagina < 1:
+                queryset = []
+            else:
+                queryset = p.page(pagina)
+        else:
+            queryset = p.page(1)
+
+    data = serializers.serialize("json", queryset)
+    return HttpResponse(data, content_type='application/json')
 
 def politico(request):
     queryset = Politico.objects.all()
@@ -13,8 +32,7 @@ def politico(request):
     if cpf:
         queryset = queryset.filter(CPF__exact=cpf)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def partido(request):
     queryset = Partido.objects.all()
@@ -32,8 +50,7 @@ def partido(request):
     if sigla_exata:
         queryset = queryset.filter(Sigla_Partido__iexact=sigla_exata)
     
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def orgao(request):
     queryset = Orgao.objects.all()
@@ -45,8 +62,7 @@ def orgao(request):
     if sigla_exata:
         queryset = queryset.filter(Sigla_Orgao__iexact=sigla_exata)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def votacao(request):
     queryset = Votacao.objects.all()
@@ -58,8 +74,7 @@ def votacao(request):
     if id:
         queryset = queryset.filter(ID_Camara_Votacao__exact=id)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def frente(request):
     queryset = Frente.objects.all()
@@ -74,8 +89,7 @@ def frente(request):
     if coordenador_cpf:
         queryset = queryset.filter(CPF_Coordenador__exact=coordenador_cpf)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def proposicao(request):
     queryset = Proposicao.objects.all()
@@ -87,8 +101,7 @@ def proposicao(request):
     if id:
         queryset = queryset.filter(ID_Camara_Proposicao__exact=id)
     
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def despesa(request):
     queryset = Despesa.objects.all()
@@ -97,8 +110,7 @@ def despesa(request):
     if politico_CPF:
         queryset = queryset.filter(CPF_Politico__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def profissao(request):
     queryset = Profissao.objects.all()
@@ -107,8 +119,7 @@ def profissao(request):
     if politico_CPF:
         queryset = queryset.filter(Politico_CPF__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def mandato(request):
     queryset = Mandato.objects.all()
@@ -117,8 +128,7 @@ def mandato(request):
     if politico_CPF:
         queryset = queryset.filter(Politico_CPF__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def integrante_partido(request):
     queryset = Integrante_Partido.objects.all()
@@ -130,8 +140,7 @@ def integrante_partido(request):
     if sigla_partido:
         queryset = queryset.filter(Sigla_Partido__exact=sigla_partido)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def voto_politico(request):
     queryset = Voto_Politico.objects.all()
@@ -143,8 +152,7 @@ def voto_politico(request):
     if voto_id:
         queryset = queryset.filter(ID_Camara_Votacao__exact=voto_id)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def votacao_proposicao(request):
     queryset = Votacao_Proposicao.objects.all()
@@ -156,8 +164,7 @@ def votacao_proposicao(request):
     if voto_id:
         queryset = queryset.filter(ID_Camara_Votacao__exact=voto_id)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def autor_proposicao(request):
     queryset = Autor_Proposicao.objects.all()
@@ -169,8 +176,7 @@ def autor_proposicao(request):
     if politico_CPF:
         queryset = queryset.filter(Politico_CPF__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def integrante_orgao(request):
     queryset = Integrante_Orgao.objects.all()
@@ -182,8 +188,7 @@ def integrante_orgao(request):
     if politico_CPF:
         queryset = queryset.filter(Politico_CPF__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)
 
 def integrante_frente(request):
     queryset = Integrante_Frente.objects.all()
@@ -195,5 +200,4 @@ def integrante_frente(request):
     if politico_CPF:
         queryset = queryset.filter(Politico_CPF__exact=politico_CPF)
 
-    data = serializers.serialize("json", queryset)
-    return HttpResponse(data, content_type='application/json')
+    return pos_processo(queryset, request)

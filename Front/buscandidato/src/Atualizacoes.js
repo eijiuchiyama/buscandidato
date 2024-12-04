@@ -10,11 +10,11 @@ function Atualizacoes(){
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
         <div class="card p-3">
-            <div class="card-header text-center rounded mb-5">
+            <div class="card-header text-center rounded mb-5" style={{backgroundColor: '#d8d8d8'}}>
                 <h1>Atualizações recentes</h1>
             </div>
-            <div>
-              <h3>Atualização</h3>
+            <div class="d-flex align-items-center justify-content-center">
+              <h3>As novas atualizações sobre o site aparecem aqui</h3>
             </div>
         </div>
         <Footer />
