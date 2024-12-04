@@ -18,10 +18,9 @@ import MembrosCamara from './MembrosCamara';
 import ListaPartidos from './ListaPartidos';
 import ListaPoliticos from './ListaPoliticos';
 import ListaFrentes from './ListaFrentes';
-import ListaOrgaos from './ListaOrgaos'
-import ListaProposicoes from './ListaProposicoes';
-import ListaVotacoes from './ListaVotacoes'
-import ListaMembros from './ListaMembros'
+import ListaOrgaos from './ListaOrgaos';
+import ListaProposicoes from './Proposicoes';
+import ListaMembros from './ListaMembros';
 import VotacoesProposicao from './VotacoesProposicao';
 import ListaIntegrantesPartido from './ListaIntegrantesPartido';
 
@@ -37,12 +36,11 @@ function Rotas() {
         <Route path="/senado" element={<Senado />} />
         <Route path="/deputados" element={<Deputados />} />
         <Route path="/municipal" element={<Municipal />} />
-        <Route path="/lista-frentes" element={<ListaFrentes />} />
-        <Route path="/lista-orgaos" element={<ListaOrgaos />} />
-        <Route path="/lista-proposicoes" element={<ListaProposicoes />} />
-        <Route path="/lista-votacoes" element={<ListaVotacoes />} />
-        <Route path="/lista-membros" element={<ListaMembros />} />
-        <Route path="/membros-camara" element={<MembrosCamara />} />
+        <Route path="/lista-frentes/:pagina" element={<ListaFrentes />} />
+        <Route path="/lista-orgaos/:pagina" element={<ListaOrgaos />} />
+        <Route path="/lista-proposicoes/:pagina" element={<ListaProposicoes />} />
+        <Route path="/lista-membros/:pagina" element={<ListaMembros />} />
+        <Route path="/membros-camara/:pagina" element={<MembrosCamara />} />
         <Route path="/frente/:frente" component={Frente} element={<Frente />} />
         <Route path="/orgao/:orgao" component={Orgao} element={<Orgao />} />
         <Route path="/proposicao/:proposicao" component={Proposicao} element={<Proposicao />} />
@@ -50,8 +48,8 @@ function Rotas() {
         <Route path="/resultados/:tipoPesquisa/:nome" element={<ResultadoPesquisa />} />
         <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
-        <Route path="/lista-partidos" element={<ListaPartidos/>} />
-        <Route path="/lista-politicos" element={<ListaPoliticos/>} />
+        <Route path="/lista-partidos/:pagina" element={<ListaPartidos/>} />
+        <Route path="/lista-politicos/:pagina" element={<ListaPoliticos/>} />
         <Route path="/votacoes-proposicao/:proposicao" component={Proposicao} element={<VotacoesProposicao />} />
       </Routes>
     </Router>

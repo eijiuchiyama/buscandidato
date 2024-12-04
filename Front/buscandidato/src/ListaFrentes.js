@@ -1,13 +1,15 @@
 import {Header, Footer} from './App.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
-const Cartao = ({ nome }) =>(
+const Cartao = ({ nome, id }) =>(
   <div className="col-md-auto mb-2 mt-2">
       <div className="card" style={{width: '18rem'}}>
           <div className="card-body">
               <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
-              <Link to={`/frente/${nome}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+              <Link to={`/frente/${id}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
           </div>
       </div>
   </div>
@@ -15,12 +17,15 @@ const Cartao = ({ nome }) =>(
 
 function ListaFrentes(){
 
+  const { pagina } = useParams();
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/frentes/') // URL da sua API
+    setLoading(true);
+    fetch(`/api/frentes/?itens=100&pagina=${pagina}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -35,7 +40,7 @@ function ListaFrentes(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [pagina]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -57,8 +62,13 @@ function ListaFrentes(){
             <div className="container text-center">
                 <div className="row justify-content-md-center mb-2 mt-2">
                     {data.map((item) => (
-                    <Cartao key={item.pk} nome={item.fields.Nome} />
+                    <Cartao key={item.pk} nome={item.fields.Nome} id={item.pk}/>
                     ))}
+                </div>
+                <div>
+                  <Link to={`/lista-frentes/${parseInt(pagina)-1}`}><Button>Anterior</Button></Link>
+                  <span class="mx-3">{pagina}</span>
+                  <Link to={`/lista-frentes/${parseInt(pagina)+1}`}><Button>Próxima</Button></Link>
                 </div>
             </div>
             ) : (<></>) }

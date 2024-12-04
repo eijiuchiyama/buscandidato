@@ -1,6 +1,8 @@
 import {Header, Footer} from './App.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const Cartao = ({ tipo, numero, ano, ementa, pk }) =>(
     <div className="col-md-auto mb-2 mt-2">
@@ -16,12 +18,15 @@ const Cartao = ({ tipo, numero, ano, ementa, pk }) =>(
 
 function Proposicoes(){
 
+  const { pagina } = useParams();
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/proposicoes/') // URL da sua API
+    setLoading(true);
+    fetch(`/api/proposicoes/?itens=100&pagina=${pagina}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -36,7 +41,7 @@ function Proposicoes(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [pagina]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -60,6 +65,11 @@ function Proposicoes(){
                     {data.map((item) => (
                     <Cartao key={item.pk} tipo={item.fields.Tipo} numero={item.fields.Numero} ano={item.fields.Ano_Apresentacao} ementa={item.fields.Ementa} pk={item.pk} />
                     ))}
+                </div>
+                <div>
+                  <Link to={`/lista-proposicoes/${parseInt(pagina)-1}`}><Button>Anterior</Button></Link>
+                  <span class="mx-3">{pagina}</span>
+                  <Link to={`/lista-proposicoes/${parseInt(pagina)+1}`}><Button>Próxima</Button></Link>
                 </div>
             </div>
             ) : (<></>) }

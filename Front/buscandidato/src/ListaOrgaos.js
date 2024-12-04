@@ -1,6 +1,8 @@
 import {Header, Footer} from './App.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const Cartao = ({ nome }) =>(
   <div className="col-md-auto mb-2 mt-2">
@@ -15,12 +17,15 @@ const Cartao = ({ nome }) =>(
 
 function ListaOrgaos(){
 
+  const { pagina } = useParams();
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/orgaos/') // URL da sua API
+    setLoading(true);
+    fetch(`/api/orgaos/?itens=100&pagina=${pagina}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -35,7 +40,7 @@ function ListaOrgaos(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [pagina]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -59,6 +64,11 @@ function ListaOrgaos(){
                     {data.map((item) => (
                     <Cartao key={item.pk} nome={item.fields.Nome} />
                     ))}
+                </div>
+                <div>
+                  <Link to={`/lista-orgaos/${parseInt(pagina)-1}`}><Button>Anterior</Button></Link>
+                  <span class="mx-3">{pagina}</span>
+                  <Link to={`/lista-orgaos/${parseInt(pagina)+1}`}><Button>Próxima</Button></Link>
                 </div>
             </div>
             ) : (<></>) }

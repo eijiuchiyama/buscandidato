@@ -2,6 +2,8 @@ import {Header, Footer} from './App.js'
 import ListEntry from './components/ListEntry.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const Cartao = ({ cpf, nome, partido, foto }) =>(
     <div className="col-md-auto">
@@ -25,13 +27,16 @@ const Cartao = ({ cpf, nome, partido, foto }) =>(
 );
 
 function MembrosCamara(){
+
+  const { pagina } = useParams();
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    setLoading(true);
+    fetch(`/api/politicos/?itens=100&pagina=${pagina}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -46,7 +51,7 @@ function MembrosCamara(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [pagina]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -63,18 +68,20 @@ function MembrosCamara(){
                 <h3>Câmara dos Deputados</h3>
                 <h1>Lista de todos os Membros</h1>
             </div>
-            {/* container dinamico dos candidatos */}
+            {data && pagina ? (
             <div className="container text-center">
                 <div className="row justify-content-md-center">
                     {data.map((item) => (
                     <Cartao cpf={item.pk} nome={item.fields.Nome} partido={item.fields.Partido_Atual} foto={item.fields.Foto} />
                     ))}
                 </div>
+                <div>
+                  <Link to={`/membros-camara/${parseInt(pagina)-1}`}><Button>Anterior</Button></Link>
+                  <span class="mx-3">{pagina}</span>
+                  <Link to={`/membros-camara/${parseInt(pagina)+1}`}><Button>Próxima</Button></Link>
+                </div>
             </div>
-            <div className="text-center d-grid gap-2">
-              <button>Lista de membros</button>
-              <button>Frentes</button>
-            </div>
+            ) : (<></>) }
         </div>
         <Footer/>
       </body>

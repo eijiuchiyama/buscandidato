@@ -168,8 +168,8 @@ export function Header(){
           <div class="d-flex flex-grow-1 justify-content-end m-5">
             <DropdownMenu optionsList={[
               <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
-              <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
-              <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+              <div><Link to='/lista-politicos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+              <div><Link to='/lista-partidos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
               <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
               <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
           </div>
@@ -177,16 +177,16 @@ export function Header(){
       </div>}
       {isMobile && 
       <div class="container">
-        <div>
-          <DropdownMenu optionsList={[
-            <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
-            <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
-            <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
-            <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
-            <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
-        </div>
         <div class="m-2">
           <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
+        </div>
+        <div d-flex align-items-center justify-content-center style={{width: "50px"}}>
+          <DropdownMenu optionsList={[
+            <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
+            <div><Link to='/lista-politicos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+            <div><Link to='/lista-partidos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+            <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
+            <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
         </div>
       </div>}
     </>

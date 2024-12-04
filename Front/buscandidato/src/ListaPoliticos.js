@@ -1,6 +1,8 @@
 import {Header, Footer} from './App.js'
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const Cartao = ({ nome, pk }) =>(
   <div className="col-md-auto mb-2 mt-2">
@@ -14,12 +16,16 @@ const Cartao = ({ nome, pk }) =>(
 );
 
 function ListaPoliticos(){
+
+  const { pagina } = useParams();
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    setLoading(true);
+    fetch(`/api/politicos/?itens=100&pagina=${pagina}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -35,7 +41,7 @@ function ListaPoliticos(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [pagina]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -52,12 +58,17 @@ function ListaPoliticos(){
             <div className="card-header text-center rounded" style={{backgroundColor: '#d8d8d8'}}>
                 <h1>Lista de todos os Políticos</h1>
             </div>
-            {data ? (
+            {data && pagina ? (
             <div className="container text-center">
                 <div className="row justify-content-md-center mb-2 mt-2">
                     {data.map((item) => (
                     <Cartao key={item.pk} nome={item.fields.Nome} pk={item.pk} />
                     ))}
+                </div>
+                <div>
+                  <Link to={`/lista-politicos/${parseInt(pagina)-1}`}><Button>Anterior</Button></Link>
+                  <span class="mx-3">{pagina}</span>
+                  <Link to={`/lista-politicos/${parseInt(pagina)+1}`}><Button>Próxima</Button></Link>
                 </div>
             </div>
             ) : (<></>) }

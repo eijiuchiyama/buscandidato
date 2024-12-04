@@ -33,10 +33,10 @@ function CamaraMunicipal(){
                 <h3>Número de membros: 55</h3>
             </div>
             <div class="text-center d-grid gap-2">
-              <Link to='/membros'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
-              <Link to='/frentes'><Button style={{width:"50%"}}>Frentes</Button></Link>
-              <Link to='/orgaos'><Button style={{width:"50%"}}>Órgãos</Button></Link>
-              <Link to='/proposicoes'><Button style={{width:"50%"}}>Proposições</Button></Link>
+              <Link to='/membros-camara/1'><Button style={{width:"50%"}}>Lista de membros</Button></Link>
+              <Link to='/lista-frentes/1'><Button style={{width:"50%"}}>Frentes</Button></Link>
+              <Link to='/lista-orgaos/1'><Button style={{width:"50%"}}>Órgãos</Button></Link>
+              <Link to='/lista-proposicoes/1'><Button style={{width:"50%"}}>Proposições</Button></Link>
             </div>
         </div>
         <Footer/>
@@ -58,15 +58,17 @@ function CamaraMunicipal(){
                 <img src={CamaraMunicipalPicture} class="mx-auto d-block rounded" style={{width:'80%'}}/>
               </div>
               <div class="card-body">
-                  <h3>Cidade:</h3>
-                  <h3>Endereço:</h3>
-                  <h3>Número de membros:</h3>
+                <h3>Cidade: São Paulo-SP</h3>
+                <h3>Endereço: Viaduto Jacareí, 100</h3>
+                <h3>CEP: 01319-900</h3>
+                <h3>Telefone: 11 3396-4000</h3>
+                <h3>Número de membros: 55</h3>
               </div>
               <div class="text-center d-grid gap-2">
-                <Link to='/membros'><Button style={{width:"80%"}}>Lista de membros</Button></Link>
-                <Link to='/frentes'><Button style={{width:"80%"}}>Frentes</Button></Link>
-                <Link to='/orgaos'><Button style={{width:"80%"}}>Órgãos</Button></Link>
-                <Link to='/proposicoes'><Button style={{width:"80%"}}>Proposições</Button></Link>
+                <Link to='/membros-camara/1'><Button style={{width:"80%"}}>Lista de membros</Button></Link>
+                <Link to='/lista-frentes/1'><Button style={{width:"80%"}}>Frentes</Button></Link>
+                <Link to='/lista-orgaos/1'><Button style={{width:"80%"}}>Órgãos</Button></Link>
+                <Link to='/lista-proposicoes/1'><Button style={{width:"80%"}}>Proposições</Button></Link>
               </div>
           </div>
           <Footer/>

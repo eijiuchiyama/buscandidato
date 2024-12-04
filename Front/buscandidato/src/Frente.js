@@ -13,10 +13,9 @@ function Frente(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/frentes') // URL da sua API
+    fetch(`/api/frentes/?id=${frente}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -31,16 +30,7 @@ function Frente(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && frente) {
-      
-      const found = data.find((item) => {return item.fields.Nome.toLowerCase() === frente.toLowerCase(); });
-      setResult(found);
-    }
-  }, [data, frente]);
+  }, [frente]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -54,18 +44,18 @@ function Frente(){
     </head>
     <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
       <Header />
-      {result ? (
+      {data ? (
       <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
           <div class="text-center mb-5">
               <h3>Câmara dos Deputados</h3>
-              <h1>{result.fields.Nome.toUpperCase()}</h1>
+              <h1>{data[0].fields.Nome.toUpperCase()}</h1>
           </div>
           <div class="m-5 border" style={{ height: '500px', borderWidth: '5px' }}>
             <Worker workerUrl={"/pdf.worker.js"}>
-                <Viewer fileUrl={result.fields.PDF_Frente} />
+                <Viewer fileUrl={data[0].fields.PDF_Frente} />
             </Worker>
         </div>
-        <Link to={`/lista-integrantes-frente/${result.fields.Nome}/${result.pk}`}><Button>Lista de integrantes</Button></Link>
+        <Link to={`/lista-integrantes-frente/${data[0].fields.Nome}/${data[0].pk}`}><Button>Lista de integrantes</Button></Link>
       </div>
       ) : (<></>)}
       <Footer/>

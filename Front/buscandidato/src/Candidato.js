@@ -2,7 +2,7 @@ import {Header, Footer} from './App.js'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import DropdownMenu from './components/DropdownMenu.js';
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Mandatos(){
 
@@ -11,11 +11,11 @@ function Mandatos(){
   const [data_mand, setData_mand] = useState([]);
   const [loading_mand, setLoading_mand] = useState(true);
   const [error_mand, setError_mand] = useState(null);
-  const [result_mand, setResult_mand] = useState([]);
   const [items_drop, setItems_drop] = useState([]);
 
   useEffect(() => {
-    fetch('/api/mandatos/') // URL da sua API
+    setLoading_mand(true);
+    fetch(`/api/mandatos/?politicoCPF=${candidato}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -30,15 +30,11 @@ function Mandatos(){
         setError_mand(err.message);
         setLoading_mand(false);
       });
-  }, []);
+  }, [candidato]);
 
   useEffect(() => {
     if (data_mand.length > 0 && candidato) {
-      const filteredMandates = data_mand.filter(
-        (item) => item.fields.Politico_CPF === candidato
-      );
-
-      const dropdownItems = filteredMandates.map((item, index) => (
+      const dropdownItems = data_mand.map((item, index) => (
         <Link key={index} to={`/mandato/${candidato}/${item.pk}`} style={{ color: "#000000", textDecoration: "none", display: "block", width: "100%" }}>
           {`${item.fields.Inicio_Mandato} - ${item.fields.Fim_Mandato}`}
         </Link>
@@ -68,15 +64,13 @@ function Candidato(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
 
   const [data_prof, setData_prof] = useState([]);
   const [loading_prof, setLoading_prof] = useState(true);
   const [error_prof, setError_prof] = useState(null);
-  const [result_prof, setResult_prof] = useState(null);
 
   useEffect(() => {
-    fetch('/api/politicos/') // URL da sua API
+    fetch(`/api/politicos/?cpf=${candidato}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -84,6 +78,7 @@ function Candidato(){
         return response.json();
       })
       .then((json) => {
+        console.log(json);
         setData(json);
         setLoading(false);
       })
@@ -91,10 +86,10 @@ function Candidato(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [candidato]);
 
   useEffect(() => {
-    fetch('/api/profissoes/') // URL da sua API
+    fetch(`/api/profissoes/?politicoCPF=${candidato}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -109,25 +104,7 @@ function Candidato(){
         setError_prof(err.message);
         setLoading_prof(false);
       });
-  }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && candidato) {
-      
-      const found = data.find((item) => {return item.pk === candidato; });
-      setResult(found);
-    }
-  }, [data, candidato]);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data_prof.length > 0 && candidato) {
-      
-      const found = data_prof.find((item) => {return item.fields.Politico_CPF === candidato; });
-      setResult_prof(found);
-    }
-  }, [data_prof, candidato]);
+  }, [candidato]);
 
   if (loading || loading_prof) return <p>Carregando...</p>;
   if (error || error_prof) return <p>Erro: {error}</p>;
@@ -140,24 +117,24 @@ function Candidato(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {result && result_prof ? (
+        {data && data_prof ? (
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h2>{result.fields.Nome.toUpperCase()}</h2>
+                <h2>{data[0].fields.Nome.toUpperCase()}</h2>
             </div>
             <div class="p-4">
-              <img src={result.fields.Foto} class="mx-auto d-block rounded" style={{width:'30vw', maxWidth:"300px"}}/>
+              <img src={data[0].fields.Foto} class="mx-auto d-block rounded" style={{width:'30vw', maxWidth:"300px"}}/>
             </div>
             <div class="card-body">
-              <h3>Nome civil: {result.fields.Nome_Civil}</h3>
-              <h3>Partido atual: {result.fields.Partido_Atual}</h3>
-              <h3>Estado: {result.fields.Estado}</h3>
-              <h3>Estado de nascimento: {result.fields.Estado_Nascimento}</h3>
-              <h3>Município de nascimento: {result.fields.Municipio_Nascimento}</h3>
-              <h3>Data de nascimento: {result.fields.Data_Nascimento}</h3>
-              <h3>Sexo: {result.fields.Sexo}</h3>
-              <h3>Escolaridade: {result.fields.Escolaridade}</h3>
-              <h3>Profissão: {result_prof.fields.Titulo}</h3>
+              <h3>Nome civil: {data[0].fields.Nome_Civil}</h3>
+              <h3>Partido atual: {data[0].fields.Partido_Atual}</h3>
+              <h3>Estado: {data[0].fields.Estado}</h3>
+              <h3>Estado de nascimento: {data[0].fields.Estado_Nascimento}</h3>
+              <h3>Município de nascimento: {data[0].fields.Municipio_Nascimento}</h3>
+              <h3>Data de nascimento: {data[0].fields.Data_Nascimento}</h3>
+              <h3>Sexo: {data[0].fields.Sexo}</h3>
+              <h3>Escolaridade: {data[0].fields.Escolaridade}</h3>
+              <h3>Profissão: {data_prof[0].fields.Titulo}</h3>
             </div>
             <Mandatos />
         </div> 
