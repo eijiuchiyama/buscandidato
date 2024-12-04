@@ -64,7 +64,7 @@ function MembrosCamara(){
         <body className="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
           <div class="card p-3">
-            <div class="card-header text-center rounded mb-5">
+            <div class="card-header text-center rounded mb-5" style={{backgroundColor: '#5555ff'}}>
                 <h3>Câmara dos Deputados</h3>
                 <h1>Lista de todos os Membros</h1>
             </div>

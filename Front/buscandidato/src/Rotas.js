@@ -48,13 +48,13 @@ function Rotas() {
         <Route path="/frente/:frente" component={Frente} element={<Frente />} />
         <Route path="/orgao/:orgao" component={Orgao} element={<Orgao />} />
         <Route path="/proposicao/:proposicao" component={Proposicao} element={<Proposicao />} />
-        <Route path="/votacao/:votacao" component={Votacao} element={<Votacao />} />
+        <Route path="/votacao/:votacao/:proposicao_tipo/:proposicao_numero/:proposicao_ano" component={Votacao} element={<Votacao />} />
         <Route path="/resultados/:tipoPesquisa/:nome" element={<ResultadoPesquisa />} />
         <Route path="/atualizacoes" element={<Atualizacoes />} />
         <Route path="/sobre" element={<SobreSite />} />
         <Route path="/lista-partidos/:pagina" element={<ListaPartidos/>} />
         <Route path="/lista-politicos/:pagina" element={<ListaPoliticos/>} />
-        <Route path="/votacoes-proposicao/:proposicao" component={Proposicao} element={<VotacoesProposicao />} />
+        <Route path="/votacoes-proposicao/:proposicao_id/:proposicao_tipo/:proposicao_numero/:proposicao_ano" component={Proposicao} element={<VotacoesProposicao />} />
       </Routes>
     </Router>
   );

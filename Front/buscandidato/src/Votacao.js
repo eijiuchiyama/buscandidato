@@ -4,15 +4,14 @@ import React, { useEffect, useState } from 'react';
 
 function Votacao(){
 
-  const { votacao } = useParams();
+  const { votacao, proposicao_tipo, proposicao_numero, proposicao_ano } = useParams();
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/votacoes/') // URL da sua API
+    fetch(`/api/votacoes/?id=${votacao}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -27,19 +26,18 @@ function Votacao(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && votacao) {
-      
-      const found = data.find((item) => {return item.fields.Nome.toLowerCase() === votacao.toLowerCase(); });
-      setResult(found);
-    }
-  }, [data, votacao]);
+  }, [votacao]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
+
+  const resultado = () => {
+    console.log(data[0].fields.Resultado)
+    if (data[0].fields.Resultado === "1") {
+        return "Aprovada";
+    }
+    return "Rejeitada";
+  };
 
     return (
     <html>
@@ -50,19 +48,19 @@ function Votacao(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {result ? (
+        {data ? (
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
             <div class="text-center mb-5">
                 <h3>Câmara dos Deputados</h3>
-                <h1>Votação 1</h1>
-                <h3>Proposição afetada: </h3>
+                <h1>{`Votação ${data[0].pk}`}</h1>
+                <h3>{`Proposição afetada: ${proposicao_tipo} ${proposicao_numero} / ${proposicao_ano}`}</h3>
             </div>
             <div>
-                <h3>Data:</h3>
-                <h3>Órgão:</h3>
-                <h3>Resultado:</h3>
-                <h3>Sim:</h3>
-                <h3>Não:</h3>
+                <h3>{`Data: ${data[0].fields.Data}`}</h3>
+                <h3>{`Órgão: ${data[0].fields.Sigla_Orgao}`}</h3>
+                <h3>{`Resultado: ${resultado()}`}</h3>
+                <h3 style={{color:"green"}}>Sim:</h3>
+                <h3 style={{color:"red"}}>Não:</h3>
             </div>
         </div>
         ) : (<></>) }

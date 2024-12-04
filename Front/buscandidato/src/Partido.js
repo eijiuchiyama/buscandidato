@@ -10,10 +10,9 @@ function Partido(){
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
 
   useEffect(() => {
-    fetch('/api/partidos/') // URL da sua API
+    fetch(`/api/partidos/?sigla=${partido}`) // URL da sua API
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erro: ${response.status}`);
@@ -28,16 +27,7 @@ function Partido(){
         setError(err.message);
         setLoading(false);
       });
-  }, []);
-
-  useEffect(() => {
-    // Buscar o item após os dados estarem carregados
-    if (data.length > 0 && partido) {
-      
-      const found = data.find((item) => { return item.fields.Nome.toLowerCase() === partido.toLowerCase(); });
-      setResult(found);
-    }
-  }, [data, partido]);
+  }, [partido]);
 
   if (loading) return <p>Carregando...</p>;
   if (error) return <p>Erro: {error}</p>;
@@ -50,19 +40,19 @@ function Partido(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {result ? (
+        {data ? (
         <div class="card p-3">
             <div class="card-header text-center rounded">
-                <h1>{result.fields.Nome.toUpperCase()}</h1>
+                <h1>{data[0].fields.Nome.toUpperCase()}</h1>
             </div>
             <div class="card-body">
-                <h3>Sigla do partido: {result.pk}</h3>
-                <h3>Número de deputados federais: {result.fields.Qty_Membros_Camara}</h3>
+                <h3>Sigla do partido: {data[0].pk}</h3>
+                <h3>Número de deputados federais: {data[0].fields.Qty_Membros_Camara}</h3>
                 <h3>Número de deputados senadores: -</h3>
                 <h3>Número de vereadores na Câmara Municipal de São Paulo: -</h3>
-                <h3>Situação: {result.fields.Situacao}</h3> 
+                <h3>Situação: {data[0].fields.Situacao}</h3> 
             </div>
-            <Link to={`/lista-integrantes-partido/${result.pk}`}><Button>Lista de integrantes</Button></Link>
+            <Link to={`/lista-integrantes-partido/${data[0].pk}`}><Button>Lista de integrantes</Button></Link>
         </div>
         ) : (<></>) }
         <Footer/>
