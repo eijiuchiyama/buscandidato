@@ -21,7 +21,7 @@ function SearchBarContent(){
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const isDesktop = useMediaQuery({ minWidth: 768 });
   var tag=0;
-  const [tagText, setTagText] = useState("Tags");
+  const [tagText, setTagText] = useState("Tudo");
   const [valorPesquisa, setValorPesquisa] = useState("");
 
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ function SearchBarContent(){
   const clickTudo = (event) => {
     tag=3;
     console.log(tag);
-    setTagText("Tags");
+    setTagText("Tudo");
   }
 
   return (

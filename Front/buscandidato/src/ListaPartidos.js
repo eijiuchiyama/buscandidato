@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
-const Cartao = ({ nome }) =>(
+const Cartao = ({ id, nome }) =>(
   <div className="col-md-auto mb-2 mt-2">
       <div className="card" style={{width: '18rem'}}>
           <div className="card-body">
               <h5 className="card-title">{`${nome.toUpperCase()}`}</h5>
-              <Link to={`/partido/${nome}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
+              <Link to={`/partido/${id}`} style={{color:"black", textDecoration: "none"}}>Ver mais</Link>
           </div>
       </div>
   </div>
@@ -61,7 +61,7 @@ function ListaPartidos(){
             <div className="container text-center">
                 <div className="row justify-content-md-center mb-2 mt-2">
                     {data.map((item) => (
-                    <Cartao key={item.pk} nome={item.fields.Nome} />
+                    <Cartao key={item.pk} id={item.pk} nome={item.fields.Nome} />
                     ))}
                 </div>
                 <div>

@@ -1,6 +1,8 @@
 import {Header, Footer} from './App.js'
 import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from "react-router-dom";
 
 function Proposicao(){
 
@@ -52,6 +54,7 @@ function Proposicao(){
                 <h3>Temas: {data[0].fields.Keywords}</h3>
                 <h3>Situação: {data[0].fields.Situacao}</h3>
             </div>
+            <Link to={`/votacoes-proposicao/${data[0].pk}/${data[0].fields.Tipo}/${data[0].fields.Numero}/${data[0].fields.Ano_Apresentacao}`}><Button>Lista de votações da proposição</Button></Link>
         </div>
         ) : (<></>) }
         <Footer/>
