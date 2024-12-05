@@ -176,17 +176,17 @@ export function Header(){
         </div>
       </div>}
       {isMobile && 
-      <div class="container">
-        <div class="row mb-2">
+      <div class="container d-flex flex-column align-items-center">
+        <div class="row mb-3">
+          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
+        </div>
+        <div class="row" style={{width:"80px"}}>
           <DropdownMenu optionsList={[
             <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
-            <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
-            <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+            <div><Link to='/lista-politicos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+            <div><Link to='/lista-partidos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
             <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
             <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
-        </div>
-        <div class="row">
-          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
       </div>}
     </>
@@ -195,7 +195,7 @@ export function Header(){
 
 export function Footer(){
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const width = isMobile ? "50%" : "30%";
+  const width = isMobile ? "60%" : "30%";
 
   return(
     <>
