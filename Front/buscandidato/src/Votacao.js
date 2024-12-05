@@ -10,6 +10,10 @@ function Votacao(){
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const [data_voto, setData_voto] = useState([]);
+  const [loading_voto, setLoading_voto] = useState(true);
+  const [error_voto, setError_voto] = useState(null);
+
   useEffect(() => {
     fetch(`/api/votacoes/?id=${votacao}`) // URL da sua API
       .then((response) => {
@@ -28,8 +32,26 @@ function Votacao(){
       });
   }, [votacao]);
 
-  if (loading) return <p>Carregando...</p>;
-  if (error) return <p>Erro: {error}</p>;
+  useEffect(() => {
+    fetch(`/api/voto_politico/?votoID=${votacao}`) // URL da sua API
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erro: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((json) => {
+        setData_voto(json);
+        setLoading_voto(false);
+      })
+      .catch((err) => {
+        setError_voto(err.message);
+        setLoading_voto(false);
+      });
+  }, [votacao]);
+
+  if (loading || loading_voto) return <p>Carregando...</p>;
+  if (error || error_voto) return <p>Erro: {error}</p>;
 
   const resultado = () => {
     console.log(data[0].fields.Resultado)
@@ -48,20 +70,23 @@ function Votacao(){
       </head>
       <body class="container p-3" style={{backgroundColor: '#d8d8d8'}}>
         <Header />
-        {data ? (
+        {data && data_voto ? (
         <div class="container rounded p-4" style={{backgroundColor: '#ffffff'}}>
-            <div class="text-center mb-5">
-                <h3>Câmara dos Deputados</h3>
-                <h1>{`Votação ${data[0].pk}`}</h1>
-                <h3>{`Proposição afetada: ${proposicao_tipo} ${proposicao_numero} / ${proposicao_ano}`}</h3>
-            </div>
-            <div>
-                <h3>{`Data: ${data[0].fields.Data}`}</h3>
-                <h3>{`Órgão: ${data[0].fields.Sigla_Orgao}`}</h3>
-                <h3>{`Resultado: ${resultado()}`}</h3>
-                <h3 style={{color:"green"}}>Sim:</h3>
-                <h3 style={{color:"red"}}>Não:</h3>
-            </div>
+          <div class="text-center mb-5">
+              <h3>Câmara dos Deputados</h3>
+              <h1>{`Votação ${data[0].pk}`}</h1>
+              <h3>{`Proposição afetada: ${proposicao_tipo} ${proposicao_numero} / ${proposicao_ano}`}</h3>
+          </div>
+          <div>
+              <h3>{`Data: ${data[0].fields.Data}`}</h3>
+              <h3>{`Órgão: ${data[0].fields.Sigla_Orgao}`}</h3>
+              <h3>{`Resultado: ${resultado()}`}</h3>
+          </div>
+          <div className="container">
+            {data_voto.map((item) => (
+              <h1>{`${item.fields.Politico_CPF}:${item.fields.Voto}`}</h1>    
+            ))}
+          </div>
         </div>
         ) : (<></>) }
         <Footer/>

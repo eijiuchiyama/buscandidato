@@ -177,16 +177,16 @@ export function Header(){
       </div>}
       {isMobile && 
       <div class="container">
-        <div class="row mb-2">
+        <div class="m-2">
+          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
+        </div>
+        <div d-flex align-items-center justify-content-center style={{width: "50px"}}>
           <DropdownMenu optionsList={[
             <div><Link to='/' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Página Inicial</Link></div>, 
-            <div><Link to='/lista-politicos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
-            <div><Link to='/lista-partidos' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
+            <div><Link to='/lista-politicos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Políticos</Link></div>, 
+            <div><Link to='/lista-partidos/1' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Todos os Partidos</Link></div>, 
             <div><Link to="/atualizacoes" style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Atualizações Recentes</Link></div>, 
             <div><Link to='/sobre' style={{color: "#000000", textDecoration: "none", display: "block", width: "100%"}}>Sobre o site</Link></div>]}> <MenuIcon/> </DropdownMenu>
-        </div>
-        <div class="row">
-          <Link to='/'><img src={logo} class="img-fluid" alt="BusCandidatoLogo"></img></Link>
         </div>
       </div>}
     </>
@@ -195,16 +195,23 @@ export function Header(){
 
 export function Footer(){
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const width = isMobile ? "50%" : "30%";
-
+  const isDesktop = useMediaQuery({ minWidth: 768 });
   return(
     <>
+      {isDesktop && 
       <div class="container">
-        <div class="text-center row justify-content-center">
-          <img src={logo} style={{width:width}} class="img-fluid m-2" alt="BootstrapLogo"></img>
+        <div class="text-center m-5">
+          <img src={logo} style={{width:"30%"}} class="img-fluid m-2" alt="BootstrapLogo"></img>
+          <h5>2024</h5>
         </div>
-        <div class="row justify-content-center text-center"><h5>2024</h5></div>
-      </div>
+      </div>}
+      {isMobile && 
+      <div class="container">
+        <div class="text-center m-5">
+          <img src={logo} style={{width:"50%"}} class="img-fluid m-2" alt="BootstrapLogo"></img>
+          <h5>2024</h5>
+        </div>
+      </div>}
     </>
   );
 }
@@ -230,7 +237,7 @@ function App() {
             </ContentBox>
           </div>
           <div class="row">
-            <ContentBox header="Ou escolha uma casa legislativa">
+            <ContentBox header="Ou escolha uma casa legislativa para ver sobre frentes, órgãos e proposições">
               <SecondSectionButtons />
             </ContentBox>
           </div>
@@ -248,7 +255,7 @@ function App() {
             </ContentBox>
           </div>
           <div class="row">
-            <ContentBox header="Ou escolha uma casa legislativa">
+            <ContentBox header="Ou escolha uma casa legislativa para ver sobre frentes, órgãos e proposições">
               <SecondSectionButtons />
             </ContentBox>
           </div>
