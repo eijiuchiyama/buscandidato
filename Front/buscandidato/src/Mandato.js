@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Tabs from './components/Tabs.js'; // Componente de abas (implemente se ainda não existir)
 
+
 function Mandato() {
   const { mandato } = useParams(); // Número do mandato vindo da URL
+  console.log(mandato);
   const [PoliticoCpf, setPoliticoCpf] = useState(null);
   const [politicoNome, setPoliticoNome] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -18,6 +20,11 @@ function Mandato() {
   const [fim, setFim] = useState([]);
 
   useEffect(() => {
+    const url = window.location.pathname;
+    const parts = url.split("/");
+    const cpf = parts[2]; // Posição do primeiro parâmetro
+    setPoliticoCpf(cpf);
+    console.log(PoliticoCpf)
     // Busca o mandato e obtém o CPF do político
     fetch(`/api/mandatos?pk=${mandato}`)
       .then((response) => {
@@ -27,8 +34,6 @@ function Mandato() {
       .then((data) => {
         const mandatoEncontrado = data.find((item) => item.pk === parseInt(mandato, 10));
         if (mandatoEncontrado) {
-          const cpf = mandatoEncontrado.fields.Politico_CPF;
-          setPoliticoCpf(cpf);
           const estadoMandato = mandatoEncontrado.fields.Estado;
           setEstado(estadoMandato);
           const inicioMandato = mandatoEncontrado.fields.Inicio_Mandato;
@@ -44,7 +49,7 @@ function Mandato() {
             return res.json();
           })
           .then((politicos) => {
-    // Filtrar político pelo CPF
+    // Filtrar político pelo CPF-
             const politico = politicos.find((p) => p.pk === cpf);
             if (politico?.fields?.Nome) {
               setPoliticoNome(politico.fields.Nome); // Define o nome do político
@@ -70,11 +75,12 @@ function Mandato() {
             }
             return res.json();
           })
-          .then((frentes) => {
-            const frentesCoordenadas = frentes.filter(
+          .then((data) => {
+            const frentesCoordenadas = data.filter(
               (frente) => frente.fields.CPF_Coordenador === PoliticoCpf
             );
             if (frentesCoordenadas.length > 0) {
+              setFrentes(frentesCoordenadas);
               console.log('Frentes coordenadas pelo político:', frentesCoordenadas);
             } else {
               console.log('Nenhuma frente encontrada para o coordenador com o CPF:', PoliticoCpf);
@@ -103,9 +109,14 @@ function Mandato() {
 
   const tabData = [
     { label: 'Despesas', content: 'Despesas do período' },
-    { label: 'Proposições', content: proposicoes.map((item) => <p key={item.id}>{item.titulo}</p>) },
-    { label: 'Frentes', content: frentes.map((item) => <p key={item.id}>{item.nome}</p>) },
-    { label: 'Votações', content: votacoes.map((item) => <p key={item.id}>{item.proposicao}</p>) },
+    { label: 'Proposições', content: "Proposições" },
+    { label: 'Frentes', content: frentes.length > 0
+        ? frentes.map((frente, index) => (
+            <><p key={index}>Nome: {frente.fields.Nome}</p> <p key={index}> PDF: {frente.fields.PDF_Frente}</p></>
+          ))
+        : <p>Nenhuma frente encontrada.</p>
+    },
+    { label: 'Votações', content: 'Votações' },
   ];
 
 
