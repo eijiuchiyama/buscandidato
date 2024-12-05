@@ -32,7 +32,7 @@ function Rotas() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/candidato/:candidato" component={Candidato} element={<Candidato />} />
-        <Route path="/mandato/:mandato" component={Mandato} element={<Mandato />} />
+        <Route path="/mandato/:candidato/:mandato" component={Mandato} element={<Mandato />} />
         <Route path="/partido/:partido" component={Partido} element={<Partido />} />
         <Route path="/lista-integrantes-partido/:partido" component={Partido} element={<ListaIntegrantesPartido />} />
         <Route path="/lista-integrantes-frente/:frente_nome/:frente_id" element={<ListaIntegrantesFrente />} />
